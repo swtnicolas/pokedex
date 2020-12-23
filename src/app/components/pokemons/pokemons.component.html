@@ -1,0 +1,34 @@
+<section>
+  <form>
+    <input
+      type="text"
+      name="search"
+      placeholder="Direct Search: Pokemon or ID"
+    />
+  </form>
+  <article
+    class="grid-cards"
+    *ngFor="let pokemon of pokemons | slice: lowValue:highValue"
+  >
+    <div class="grid-content">
+      <h3 id="pokemon-id">N.º{{ pokemon.id | number: "3.0" }}</h3>
+      <h2 id="pokemon-name">{{ pokemon.name | titlecase }}</h2>
+    </div>
+    <img
+      class="grid-img"
+      [src]="pokemon.img"
+      alt="{{ pokemon.name }}"
+      appImgPreload="./assets/img/0.png"
+    />
+  </article>
+  <div id="paginator">
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      (page)="getPaginatorData($event)"
+      [pageSizeOptions]="pageSizeOptions"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
+  </div>
+</section>

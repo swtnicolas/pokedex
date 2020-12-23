@@ -1,0 +1,98 @@
+$predominante: #b12626;
+$titulo: #ffffff;
+$titulo2: #bdbdbd;
+
+$normal: #a4acaf;
+$fighting: #d56723;
+$flying: #90e7ff;
+$poison: #b97fc9;
+$ground: #afa268;
+$rock: #a38c21;
+$bug: #729f3f;
+$ghost: #7b62a3;
+$steel: #7b7b85;
+$fire: #fd7d24;
+$water: #4592c4;
+$grass: #9bcc50;
+$electric: #efd636;
+$psychic: #f366b9;
+$ice: #51c4e7;
+$dragon: #dd533a;
+$dark: #616161;
+$fairy: #febaea;
+
+section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* -------------------------- - ------------------------- */
+
+form {
+  grid-column: 1/4;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid $normal;
+  -webkit-transition: 0.5s;
+  transition: 0.2s;
+  outline: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+input[type="text"]:focus {
+  border-bottom: 2px solid $predominante;
+}
+
+.grid-cards {
+  background-color: $predominante;
+  background-image: url("/../assets/img/bg-card-top.svg"),
+    url("/../assets/img/bg-card-bottom.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: right -56vw bottom 18vh, left -50vw top 20vh;
+  // background-position: right 20vw bottom 20vh, left 20vw top 20vh;
+  margin: 2px 1.5px 0 1.5px;
+  padding: 10px 0;
+  border-radius: 5%;
+}
+
+.grid-content {
+  font-weight: 100;
+  color: $titulo;
+  text-align: center;
+}
+
+#pokemon-id {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#pokemon-name {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 300;
+  font-family: Pocket-Monk;
+}
+
+.grid-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  box-shadow: 2px 5px #00000028;
+  background-color: #ffffff21;
+}
+
+#paginator {
+  grid-column: 1/4;
+}

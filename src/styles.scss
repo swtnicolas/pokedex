@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~normalize.css";
+
+@font-face {
+  font-family: Pocket-Monk;
+  src: url(/../../assets/fonts/Pocket-Monk.otf);
+}
+
+// body {
+//   font-family: sans-serif;
+// }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-paginator-range-label {
+  margin: 0 8px 0 8px !important;
+}
+
+.mat-paginator-page-size {
+  margin: 0 !important;
+}
+
+.mat-paginator,
+.mat-paginator-page-size .mat-select-trigger {
+  color: #000000;
+}

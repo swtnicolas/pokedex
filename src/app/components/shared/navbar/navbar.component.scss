@@ -1,0 +1,89 @@
+$predominante: #b12626;
+$titulo: #ffffff;
+$titulo2: #bdbdbd;
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 10px 10px;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: $titulo2;
+  font-weight: 100;
+}
+
+.active a {
+  color: $titulo;
+  font-weight: 600;
+}
+
+.active:hover {
+  text-decoration: none;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: $predominante;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.2s;
+}
+
+.sidenav a {
+  font-size: 20px;
+  display: block;
+  transition: 0.1s;
+}
+
+.sidenav .closebtn {
+  color: $titulo2;
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: $titulo;
+}
+
+header {
+  display: grid;
+  grid-template-columns: 40px 40px 1fr;
+  padding: 5px;
+  background-color: $predominante;
+}
+
+#logo-title {
+  margin: 0;
+  padding: 0;
+  font-family: Pocket-Monk;
+  font-size: 28px;
+  font-weight: 100;
+  color: #ffffff;
+}
+
+#logo-img {
+  width: 30px;
+}
+
+.fa-bars {
+  text-align: left;
+  color: #ffffff;
+  font-size: 25px;
+  margin: 2px;
+}
