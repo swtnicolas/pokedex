@@ -6,10 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 
 import { ImgPreloadDirective } from './directive/img-preload.directive';
-import { CustomPaginator } from './components/pokemons/CustomPaginatorConfiguration';
+import { CustomPaginator } from '../CustomPaginatorConfiguration';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { PokemonsComponent } from './components/pokemons/pokemons.component';
 import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-detail.component';

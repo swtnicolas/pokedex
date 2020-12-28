@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openNav(): void {
-    (<HTMLInputElement>document.getElementById('mySidenav')).style.width = '60%';
+    (<HTMLInputElement>document.getElementById('mySidenav')).style.width = '180px';
   }
 
   closeNav(): void {

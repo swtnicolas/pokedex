@@ -1,0 +1,98 @@
+$predominante: #b12626;
+$texto: #ffffff;
+$hover2: #d61e1e;
+
+.home {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+h2 {
+  font-family: Pocket-Monk;
+  font-weight: 100;
+  font-size: 40px;
+  text-align: center;
+  margin: 25px 0 25px 0;
+}
+
+img {
+  width: 228px;
+  height: 228px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  margin-top: 31px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  font-size: 15px;
+  display: block;
+  color: $texto;
+  background-color: $predominante;
+  border-radius: 10%;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: $hover2;
+}
+
+p {
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 576px) {
+  h2 {
+    font-size: 50px;
+    margin: 40px 0 40px 0;
+  }
+
+  img {
+    width: 350px;
+    height: 350px;
+  }
+
+  button {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    padding: 12px;
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-bottom: 50px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  h2 {
+    font-size: 65px;
+    margin: 65px 0 60px 0;
+  }
+
+  img {
+    width: 400px;
+    height: 400px;
+  }
+
+  button {
+    margin-top: 70px;
+    margin-bottom: 40px;
+    padding: 14px;
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 22px;
+    margin-bottom: 50px;
+  }
+}

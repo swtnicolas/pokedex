@@ -1,1 +1,93 @@
-<p>pokemon-detail works!</p>
+<section
+  [ngStyle]="{ background: backgroundColor1 }"
+  [ngStyle]="{ 'background-image': backgroundColor2 }"
+>
+  <div class="backGr">
+    <div class="top"></div>
+    <i class="fas fa-chevron-left" (click)="back()"></i>
+
+    <div class="card" *ngIf="this.pokemonDetail">
+      <img
+        class="card-img"
+        [src]="this.pokemonDetail.sprites.front_default"
+        alt="{{ this.pokemonDetail.name }}"
+        appImgPreload="./assets/img/0.png"
+      />
+      <h1 class="card-title">
+        {{ this.pokemonDetail.name | titlecase }}
+        <span>N.º{{ this.pokemonDetail.id | number: "3.0" }}</span>
+      </h1>
+      <div class="card-core">
+        <div class="card-core-exp">
+          <p>
+            Exp
+            <br />
+            <strong>{{ this.pokemonDetail.base_experience }} </strong>
+          </p>
+        </div>
+        <div class="card-core-height">
+          <p>
+            Height
+            <br />
+            <strong> {{ this.pokemonDetail.height }} m. </strong>
+          </p>
+        </div>
+        <div class="card-core-weight">
+          <p>
+            Weight
+            <br />
+            <strong> {{ this.pokemonDetail.weight }} Kg. </strong>
+          </p>
+        </div>
+      </div>
+      <div class="card-types">
+        <div
+          *ngFor="let type of this.pokemonDetail.types"
+          [style.background]="getTypeColor(type.type.name)"
+          class="card-types-color"
+        >
+          <p>{{ type.type.name | titlecase }}</p>
+        </div>
+      </div>
+      <div class="card-stats">
+        <p class="card-stats-title">Hp:</p>
+        <p class="card-stats-n">
+          <strong>
+            {{ this.pokemonDetail.stats[0].base_stat }}
+          </strong>
+        </p>
+        <p class="card-stats-title">Attack:</p>
+        <p class="card-stats-n">
+          <strong>
+            {{ this.pokemonDetail.stats[1].base_stat }}
+          </strong>
+        </p>
+        <p class="card-stats-title">Defense:</p>
+        <p class="card-stats-n">
+          <strong>
+            {{ this.pokemonDetail.stats[2].base_stat }}
+          </strong>
+        </p>
+        <p class="card-stats-title">Sp.Atk:</p>
+        <p class="card-stats-n">
+          <strong>
+            {{ this.pokemonDetail.stats[3].base_stat }}
+          </strong>
+        </p>
+        <p class="card-stats-title">Sp.Def:</p>
+        <p class="card-stats-n">
+          <strong>
+            {{ this.pokemonDetail.stats[4].base_stat }}
+          </strong>
+        </p>
+        <p class="card-stats-title">Speed:</p>
+        <p class="card-stats-n">
+          <strong>
+            {{ this.pokemonDetail.stats[5].base_stat }}
+          </strong>
+        </p>
+      </div>
+    </div>
+    <div class="bottom"></div>
+  </div>
+</section>

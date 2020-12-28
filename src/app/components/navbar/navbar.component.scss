@@ -1,0 +1,87 @@
+$predominante: #b12626;
+$titulo: #ffffff;
+$hover: #979797;
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: $predominante;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.2s;
+  &-closebtn {
+    color: $titulo;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 40px;
+    cursor: pointer;
+  }
+  &-closebtn:hover {
+    color: $hover;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 35px 0px 35px 0px;
+    }
+  }
+}
+
+.sidenav-a {
+  padding: 0 0 0 25px;
+  font-size: 20px;
+  text-decoration: none;
+  outline: none;
+  color: $titulo;
+  font-weight: 200;
+}
+
+.active .sidenav-a {
+  color: $titulo;
+  font-weight: 600;
+}
+
+.sidenav-a:hover {
+  color: $hover !important;
+  font-weight: 400;
+}
+
+header {
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 45px 40px 1fr;
+  padding: 5px;
+  background-color: $predominante;
+
+  #logo-title {
+    margin: 0;
+    padding: 0;
+    font-family: Pocket-Monk;
+    font-size: 29px;
+    font-weight: 100;
+    color: $titulo;
+  }
+
+  #logo-img {
+    width: 35px;
+  }
+
+  .fa-bars {
+    text-align: left;
+    color: $titulo;
+    font-size: 32px;
+    margin: 0 5px;
+  }
+
+  .fa-bars:hover {
+    color: $hover;
+  }
+}

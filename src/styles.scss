@@ -1,33 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+$predominante: #b12626;
+
 @import "~normalize.css";
 
 @font-face {
   font-family: Pocket-Monk;
-  src: url(/../../assets/fonts/Pocket-Monk.otf);
+  src: url("^./assets/fonts/Pocket-Monk.otf");
 }
 
-// body {
-//   font-family: sans-serif;
-// }
-
-html,
-body {
-  height: 100%;
+.mat-paginator-page-size-select {
+  margin: 0px 4px 0px 4px !important;
 }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 .mat-paginator-range-label {
-  margin: 0 8px 0 8px !important;
+  margin: 0 18px 0 8px !important;
 }
 
-.mat-paginator-page-size {
-  margin: 0 !important;
+.mat-paginator-icon {
+  width: 35px !important;
+}
+
+.mat-icon-button {
+  width: 45px !important;
+}
+
+.mat-icon-button:hover {
+  color: $predominante;
 }
 
 .mat-paginator,
 .mat-paginator-page-size .mat-select-trigger {
   color: #000000;
+  font-size: 13px;
 }

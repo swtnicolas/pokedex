@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="home">
+  <app-navbar></app-navbar>
+  <section>
+    <h2>Pokédex v.1.0</h2>
+    <img
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/female/25.gif"
+      alt="Pikachu.gif"
+    />
+    <button [routerLink]="['/pokemons']">Go to the Pokédex</button>
+    <p *ngIf="this.limit > 0">
+      This site currently contains: <strong>{{ this.limit }} Pokemons</strong>
+    </p>
+  </section>
+  <app-footer></app-footer>
+</div>

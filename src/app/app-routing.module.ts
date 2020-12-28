@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'pokemons', component: PokemonsComponent },
   // TODO| Para pasarle parametros a la url "/:parametro"
-  { path: 'pokemons/:id', component: PokemonDetailComponent },
+  { path: 'pokemon/:id', component: PokemonDetailComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,8 @@ export class PokedataService {
       .toPromise();
   }
 
-  getMoreData(name: string): Observable<object> {
-    return this.http.get(`${this.url}/pokemon/${name}`);
+  async getPokemonsDetail(id: number): Promise<any> {
+    return await this.http.get(`${this.url}/pokemon/${id}`)
+      .toPromise();
   }
 }
