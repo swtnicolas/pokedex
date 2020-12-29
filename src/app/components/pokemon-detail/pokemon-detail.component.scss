@@ -6,16 +6,11 @@ section {
   display: grid;
   grid-template-rows: 1fr;
 }
-.top {
-  height: 25px;
-}
-.bottom {
-  height: 25px;
-}
 
 .backGr {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url("^./assets/img/bg-card-top.svg"),
     url("^./assets/img/bg-card-bottom.svg");
   background-repeat: no-repeat, no-repeat;
@@ -37,10 +32,8 @@ section {
 .card {
   background: #ffffff;
   background: linear-gradient(180deg, #ffffff00 25%, #ffffff 49%, #c3c3c3 100%);
-  margin-left: auto;
-  margin-right: auto;
-  width: 250px;
   border-radius: 10%;
+  margin: 30px 0;
   &-img {
     display: block;
     margin-left: auto;
@@ -89,26 +82,19 @@ section {
   &-stats {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: auto 40px auto 40px;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 14px;
+    row-gap: 2px;
     font-size: 14px;
-    padding: 10px 15px;
-    &-title {
-      text-align: left;
-      margin: 5px 0 0 10px;
-    }
-    &-n {
-      margin: 5px 0 0 0px;
+    padding: 10px 0;
+    margin: 0 20px;
+    p {
+      margin: 0;
     }
   }
 }
 
 @media only screen and (min-width: 576px) {
-  .top {
-    height: 120px;
-  }
-  .bottom {
-    height: 50px;
-  }
   .fa-chevron-left {
     font-size: 35px;
     top: 40px;
@@ -144,26 +130,15 @@ section {
       }
     }
     &-stats {
-      grid-template-columns: auto 40px auto 50px;
+      row-gap: 5px;
       font-size: 16px;
-      padding: 14px 20px;
-      &-title {
-        margin: 5px 0 0 10px;
-      }
-      &-n {
-        margin: 5px 0 0 0px;
-      }
+      padding: 20px 0;
+      margin: 0 30px;
     }
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .top {
-    height: 130px;
-  }
-  .bottom {
-    height: 100px;
-  }
   .fa-chevron-left {
     font-size: 45px;
     top: 55px;
@@ -200,30 +175,10 @@ section {
       }
     }
     &-stats {
-      grid-template-columns: auto 40px auto 60px;
       font-size: 19px;
-      padding: 14px 20px;
-      &-title {
-        margin: 10px 0 0 15px;
-      }
-      &-n {
-        margin: 10px 0 0 0px;
-      }
+      row-gap: 10px;
+      padding: 30px 0;
+      margin: 0 35px;
     }
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .top {
-    height: 50px;
-  }
-  .bottom {
-    height: 50px;
-  }
-}
-
-@media only screen and (min-width: 1920px) {
-  .top {
-    height: 180px;
   }
 }

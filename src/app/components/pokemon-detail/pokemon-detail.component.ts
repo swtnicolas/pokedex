@@ -39,7 +39,8 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
     try {
       await this.dataService.getPokemonsDetail(this.activatedRoute.snapshot.params.id)
         .then(pokemonDetail => this.pokemonDetail = pokemonDetail)
-      // console.log(this.pokemonDetail);
+      this.pokemonDetail.height = this.pokemonDetail.height / 10;
+      this.pokemonDetail.weight = this.pokemonDetail.weight / 10;
     } catch (error) {
       if (error) {
         this.router.navigateByUrl('/pokemons');
