@@ -6,12 +6,21 @@
       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/female/25.gif"
       alt="Pikachu.gif"
     />
-    <button [routerLink]="['/pokemones']">Ir a la Pokédex</button>
-    <p *ngIf="this.limit > 0">
-      Actualmente el sitio contiene:
-      <strong>¡{{ this.limit }} Pokémones!</strong>
-    </p>
-    <p>Si llegasen a existir nuevos, se añadirán de forma automática</p>
+    <button *ngIf="this.limit > 0" [routerLink]="['/pokemones']">
+      Ir a la Pokédex
+    </button>
+    <ng-container *ngIf="this.limit > 0; else noData">
+      <p>
+        Actualmente el sitio contiene:
+        <strong>¡{{ this.limit }} Pokémones!</strong>
+        <br /><br />
+        Si llegasen a existir nuevos, se añadirán de forma automática
+      </p>
+    </ng-container>
+    <ng-template #noData>
+      <br /><br />
+      <p>Ha ocurrido un error con el servicio de PokeApi</p>
+    </ng-template>
   </section>
   <app-footer></app-footer>
 </div>

@@ -13,28 +13,24 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class PokemonsComponent implements OnInit {
 
-  private limit: number = 0;
+  public limit: number = 0;
   public pokemons: any[] = [];
   public pokemons2: any[] = [];
   public inputKey: string = '';
-
-  // Variable estatica
-  public pokemonsPerPage1: number = 60;
-  public pokemonsPerPage2: number = 60;
+  private initialPokemonsPerPage: number = 60;
 
   // Paginador
-  public length1: number = 0;
+  public pageSize1: number = this.initialPokemonsPerPage;
   public pageIndex1: number = 0;
-  public lowValue1: number = this.pageIndex1 * this.pokemonsPerPage1;
-  public highValue1: number = this.lowValue1 + this.pokemonsPerPage1;
-  public pageSize1: number = this.pokemonsPerPage1;
-  public pageSizeOptions1: any[] = [this.pokemonsPerPage1, this.pokemonsPerPage1 * 2, this.pokemonsPerPage1 * 3];
+  public lowValue1: number = this.pageIndex1 * this.pageSize1;
+  public highValue1: number = this.lowValue1 + this.pageSize1;
+  public pageSizeOptions1: any[] = [this.pageSize1, this.pageSize1 * 2, this.pageSize1 * 3];
 
+  public pageSize2: number = this.initialPokemonsPerPage;
   public pageIndex2: number = 0;
-  public lowValue2: number = this.pageIndex2 * this.pokemonsPerPage2;
-  public highValue2: number = this.lowValue2 + this.pokemonsPerPage2;
-  public pageSize2: number = this.pokemonsPerPage2;
-  public pageSizeOptions2: any[] = [this.pokemonsPerPage1, this.pokemonsPerPage1 * 2, this.pokemonsPerPage1 * 3];
+  public lowValue2: number = this.pageIndex2 * this.pageSize2;
+  public highValue2: number = this.lowValue2 + this.pageSize2;
+  public pageSizeOptions2: any[] = [this.pageSize1, this.pageSize1 * 2, this.pageSize1 * 3];
 
   // Estado del paginador (true = Paginador allList / false = Paginador searchList)
   public p1: boolean = true;
@@ -56,21 +52,19 @@ export class PokemonsComponent implements OnInit {
     this.loading = true;
     this.getPokemon();
     // Si existen los datos del paginador en sessionStorage, se recuperan y se limpian 
-    if (sessionStorage.getItem('pokemonsPerPage1') && sessionStorage.getItem('pokemonsPerPage2') && sessionStorage.getItem('pageIndex1') && sessionStorage.getItem('pageIndex2') && sessionStorage.getItem('inputKey')) {
-      this.pokemonsPerPage1 = JSON.parse(sessionStorage.getItem('pokemonsPerPage1')!);
-      this.pokemonsPerPage2 = JSON.parse(sessionStorage.getItem('pokemonsPerPage2')!);
+    if (sessionStorage.getItem('pageSize1') && sessionStorage.getItem('pageSize2') && sessionStorage.getItem('pageIndex1') && sessionStorage.getItem('pageIndex2') && sessionStorage.getItem('inputKey')) {
+      this.pageSize1 = JSON.parse(sessionStorage.getItem('pageSize1')!);
+      this.pageSize2 = JSON.parse(sessionStorage.getItem('pageSize2')!);
       this.pageIndex1 = JSON.parse(sessionStorage.getItem('pageIndex1')!);
       this.pageIndex2 = JSON.parse(sessionStorage.getItem('pageIndex2')!);
-      this.pageSize1 = this.pokemonsPerPage1;
-      this.pageSize2 = this.pokemonsPerPage2;
-      this.lowValue1 = this.pageIndex1 * this.pokemonsPerPage1;
-      this.highValue1 = this.lowValue1 + this.pokemonsPerPage1;
-      this.lowValue2 = this.pageIndex2 * this.pokemonsPerPage2;
-      this.highValue2 = this.lowValue2 + this.pokemonsPerPage2;
+      this.lowValue1 = this.pageIndex1 * this.pageSize1;
+      this.highValue1 = this.lowValue1 + this.pageSize1;
+      this.lowValue2 = this.pageIndex2 * this.pageSize2;
+      this.highValue2 = this.lowValue2 + this.pageSize2;
       sessionStorage.removeItem('pageIndex1');
       sessionStorage.removeItem('pageIndex2');
-      sessionStorage.removeItem('pokemonsPerPage1');
-      sessionStorage.removeItem('pokemonsPerPage2');
+      sessionStorage.removeItem('pageSize1');
+      sessionStorage.removeItem('pageSize2');
       this.inputKey = JSON.parse(sessionStorage.getItem('inputKey')!);
       sessionStorage.removeItem('inputKey');
       this.searchPokemon(this.inputKey);
@@ -83,9 +77,8 @@ export class PokemonsComponent implements OnInit {
         // Si la lista no esta almacenada en el localStorage, se hacen las peticiones HTTP
         // Primera petición para saber el numero total de pokemones
         await this.dataService.getPokemons(this.limit)
+          // Total de pokemones se iguala al nuevo limite para proxima solicitud 
           .then(count => this.limit = count.count)
-        // Total de pokemones se iguala al nuevo limite para proxima solicitud 
-        this.length1 = this.limit;
         await this.dataService.getPokemons(this.limit)
           .then(pokemons => this.pokemons = pokemons.results)
         this.pokemons.forEach((item: any, i: number) => {
@@ -96,43 +89,59 @@ export class PokemonsComponent implements OnInit {
       } else {
         // Si la lista esta almacenada en el localStorage, se recupera
         this.pokemons = JSON.parse(localStorage.getItem('PokemonList')!);
-        this.length1 = this.pokemons.length;
+        this.limit = this.pokemons.length;
       }
     } catch (error) {
       console.log('Ha ocurrido un error con el servicio PokeApi:');
       console.log(error);
+      this.loading = false;
     }
   }
 
   getPaginatorData(event: PageEvent) {
     window.scroll(0, 0);
     if (this.p1 === true) {
-      this.pokemonsPerPage1 = event.pageSize;
+      this.pageSize1 = event.pageSize;
       this.pageIndex1 = event.pageIndex;
-      this.lowValue1 = event.pageIndex * event.pageSize;
-      this.highValue1 = this.lowValue1 + event.pageSize;
+      this.lowValue1 = this.pageIndex1 * this.pageSize1;
+      this.highValue1 = this.lowValue1 + this.pageSize1;
     } else {
-      this.pokemonsPerPage2 = event.pageSize;
+      console.log(event);
+      this.pageSize2 = event.pageSize;
       this.pageIndex2 = event.pageIndex;
-      this.lowValue2 = event.pageIndex * event.pageSize;
-      this.highValue2 = this.lowValue2 + event.pageSize;
+      this.lowValue2 = this.pageIndex2 * this.pageSize2;
+      this.highValue2 = this.lowValue2 + this.pageSize2;
     }
   }
 
   // Metodo del formulario
   searchPokemon(poke: string): any {
-    // Autocompletar
+    // Busqueda
+    this.inputKey = poke
+    let pokemonSearch: any[] = [];
+    poke = poke.toLowerCase();
+    for (let pokemon of this.pokemons) {
+      let name = pokemon.name.toLowerCase();
+      let id = pokemon.id.toString();
+      if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
+        pokemonSearch.push(pokemon)
+      }
+    }
+    // Validación de la busqueda de pokemones
+    if (poke != '') {
+      this.p1 = false;
+      this.pokemons2 = pokemonSearch;
+    } else {
+      this.p1 = true;
+      this.pokemons2 = [];
+    }
+  }
+
+  autocomplete(poke: string): any {
     this.filteredPokemons = this.control.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
-
-    // Resetea paginador al entrar/volver a la busqueda
-    this.lowValue2 = this.pageIndex2 * this.pokemonsPerPage2;
-    this.highValue2 = this.lowValue2 + this.pokemonsPerPage2;
-
-    // Busqueda
-    this.inputKey = poke
     let pokemonSearch: any[] = [];
     let names: string[] = []
     poke = poke.toLowerCase();
@@ -166,24 +175,6 @@ export class PokemonsComponent implements OnInit {
     } else {
       this.pokemonsNames = [];
     }
-
-    // Validación de la busqueda de pokemones
-    if (poke != '') {
-      this.pokemons2 = pokemonSearch;
-      this.p1 = false;
-    } else {
-      this.pokemons2 = [];
-      this.p1 = true;
-    }
-  }
-
-  resetpage() {
-    window.scroll(0, 0);
-    this.pageIndex2 = 0;
-  }
-
-  imgLoading(): void {
-    this.loading = false;
   }
 
   // Métodos del autocompletar
@@ -196,11 +187,22 @@ export class PokemonsComponent implements OnInit {
     return value.toLowerCase().replace(/\s/g, '');
   }
 
+  resetpage() {
+    window.scroll(0, 0);
+    this.pageIndex2 = 0;
+    this.lowValue2 = this.pageIndex2 * this.pageSize2;
+    this.highValue2 = this.lowValue2 + this.pageSize2;
+  }
+
+  imgLoading(): void {
+    this.loading = false;
+  }
+
   // Se guardan los datos del paginador y se redirecciona al pokemon seleccionado. 
   onPokemon(pokemon: any) {
     sessionStorage.setItem('inputKey', JSON.stringify(this.inputKey));
-    sessionStorage.setItem('pokemonsPerPage1', JSON.stringify(this.pokemonsPerPage1));
-    sessionStorage.setItem('pokemonsPerPage2', JSON.stringify(this.pokemonsPerPage2));
+    sessionStorage.setItem('pageSize1', JSON.stringify(this.pageSize1));
+    sessionStorage.setItem('pageSize2', JSON.stringify(this.pageSize2));
     sessionStorage.setItem('pageIndex1', JSON.stringify(this.pageIndex1));
     sessionStorage.setItem('pageIndex2', JSON.stringify(this.pageIndex2));
     this.router.navigate(['/pokemon', pokemon.id])

@@ -6,8 +6,10 @@
         type="text"
         name="search"
         placeholder="Buscar por Nombre o ID"
-        (keyup.enter)="trigger.closePanel()"
-        (keyup)="searchPokemon(searchText.value); resetpage()"
+        (keyup.enter)="
+          searchPokemon(searchText.value); trigger.closePanel(); resetpage()
+        "
+        (keyup)="autocomplete(searchText.value)"
         #searchText
         autocomplete="off"
         [formControl]="control"
@@ -26,7 +28,7 @@
       <i
         class="fas fa-backspace"
         *ngIf="this.inputKey.length !== 0"
-        (click)="searchPokemon((searchText.value = ''))"
+        (click)="searchPokemon((searchText.value = '')); resetpage()"
       ></i>
     </form>
     <div class="bgLoading" *ngIf="loading">
@@ -63,7 +65,7 @@
       <div class="paginator animatedFast fadeIn">
         <mat-paginator
           color="warn"
-          [length]="length1"
+          [length]="limit"
           [pageIndex]="pageIndex1"
           [pageSize]="pageSize1"
           (page)="getPaginatorData($event)"
