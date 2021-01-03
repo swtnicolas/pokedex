@@ -2,13 +2,15 @@
   <a class="sidenav-closebtn" (click)="closeNav()"> &times; </a>
   <ul>
     <li routerLinkActive="active" (click)="closeNav()">
-      <a class="sidenav-a" [routerLink]="['/home']">Home</a>
+      <a class="sidenav-a" [routerLink]="['/inicio']">Inicio</a>
     </li>
     <li routerLinkActive="active" (click)="closeNav()">
-      <a class="sidenav-a" [routerLink]="['/pokemons']">Pokemons</a>
+      <a class="sidenav-a" [routerLink]="['/pokemones']">Pokémones</a>
     </li>
     <li routerLinkActive="active" (click)="closeNav()">
-      <a class="sidenav-a" [routerLink]="['/about']">About</a>
+      <a class="sidenav-a" [routerLink]="['/sobre-pokedex']"
+        >Sobre&nbsp;Pokédex</a
+      >
     </li>
   </ul>
 </nav>

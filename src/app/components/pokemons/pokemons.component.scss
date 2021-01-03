@@ -4,9 +4,34 @@ $hover: #979797;
 $hover2: #d61e1e;
 $search: #a4acaf;
 
+.pokemons {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+}
+
 section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 3px;
+  margin: 0 2px;
+}
+
+.bgLoading {
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 form {
@@ -53,7 +78,6 @@ form {
 .cards {
   background: #ffffff;
   background: linear-gradient(180deg, #ffffff 34%, #707070 100%);
-  margin: 2px 1.5px 0 1.5px;
   padding: 0 0 10px 0;
   border-radius: 5%;
 
@@ -64,14 +88,14 @@ form {
     &-id {
       margin: 0;
       padding: 0;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
     }
 
     &-name {
-      margin: -15px 0 0 0;
+      margin: 0;
       padding: 0;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 300;
       font-family: Pocket-Monk;
     }
@@ -85,8 +109,9 @@ form {
     box-shadow: 2px 5px #00000028;
     background-color: #ffffff21;
     cursor: pointer;
+    transition: width 0.2s;
+    transition: height 0.2s;
   }
-
   &-img:hover {
     width: 93px;
     height: 93px;
@@ -101,56 +126,76 @@ form {
 .nopokemon {
   grid-column: 1/4;
   text-align: center;
+  font-size: 13px;
   font-weight: 500;
   background-color: #b126267e;
-  margin: 10px 2px;
-  padding: 10px 0;
+  margin: 0;
+  padding: 4px 0;
   border-radius: 2%;
 
   p {
     margin: 0;
-    padding: 0;
+    padding: 5px;
   }
 }
 
-@media only screen and (min-width: 576px) {
+.yespokemon {
+  grid-column: 1/4;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #266eb17e;
+  margin: 0;
+  padding: 4px 0;
+  border-radius: 2%;
+
+  p {
+    margin: 0;
+    padding: 5px;
+  }
+}
+
+@media only screen and (min-width: 470px) {
+  .cards {
+    &-content {
+      &-id {
+        font-size: 15px;
+      }
+      &-name {
+        font-size: 20px;
+      }
+    }
+    &-img {
+      width: 106px;
+      height: 106px;
+    }
+    &-img:hover {
+      width: 96px;
+      height: 96px;
+    }
+  }
+}
+
+@media only screen and (min-width: 570px) {
   section {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
   form {
     grid-column: 1/5;
-
     input[type="text"] {
       width: 100%;
       padding: 10px 20px;
       border-bottom: 3px solid $search;
       font-size: 16px;
     }
-
     input[type="text"]:focus {
       border-bottom: 3px solid $predominante;
     }
-
     .fa-backspace {
       padding: 0px;
       font-size: 30px;
       margin: 4px;
-    }
-  }
-
-  .cards {
-    margin: 2px 1.5px 0 1.5px;
-    padding: 0 0 10px 0;
-    &-content {
-      &-id {
-        font-size: 15px;
-        font-weight: 500;
-      }
-      &-name {
-        margin: -4px 0 0 0;
-        font-size: 23px;
-      }
     }
   }
   .paginator {
@@ -159,9 +204,24 @@ form {
   }
   .nopokemon {
     grid-column: 1/5;
-    margin: 10px 2px;
-    padding: 12px 0;
     font-size: 15px;
+  }
+  .yespokemon {
+    grid-column: 1/5;
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .cards {
+    &-img {
+      width: 120px;
+      height: 120px;
+    }
+    &-img:hover {
+      width: 110px;
+      height: 110px;
+    }
   }
 }
 
@@ -169,15 +229,26 @@ form {
   section {
     grid-template-columns: repeat(5, 1fr);
   }
-
   form {
     grid-column: 1/6;
   }
-
+  .cards {
+    &-img {
+      width: 130px;
+      height: 130px;
+    }
+    &-img:hover {
+      width: 120px;
+      height: 120px;
+    }
+  }
   .paginator {
     grid-column: 1/6;
   }
   .nopokemon {
+    grid-column: 1/6;
+  }
+  .yespokemon {
     grid-column: 1/6;
   }
 }
@@ -186,15 +257,26 @@ form {
   section {
     grid-template-columns: repeat(6, 1fr);
   }
-
   form {
     grid-column: 1/7;
   }
-
+  .cards {
+    &-img {
+      width: 135px;
+      height: 135px;
+    }
+    &-img:hover {
+      width: 125px;
+      height: 125px;
+    }
+  }
   .paginator {
     grid-column: 1/7;
   }
   .nopokemon {
+    grid-column: 1/7;
+  }
+  .yespokemon {
     grid-column: 1/7;
   }
 }
@@ -214,6 +296,9 @@ form {
   .nopokemon {
     grid-column: 1/11;
   }
+  .yespokemon {
+    grid-column: 1/11;
+  }
 }
 
 @media only screen and (min-width: 2560px) {
@@ -229,6 +314,9 @@ form {
     grid-column: 1/13;
   }
   .nopokemon {
+    grid-column: 1/13;
+  }
+  .yespokemon {
     grid-column: 1/13;
   }
 }

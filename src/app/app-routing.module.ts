@@ -7,12 +7,12 @@ import { PokemonsComponent } from './components/pokemons/pokemons.component';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'pokemons', component: PokemonsComponent },
+  { path: 'inicio', component: HomeComponent },
+  { path: 'sobre-pokedex', component: AboutComponent },
+  { path: 'pokemones', component: PokemonsComponent },
   // TODO| Para pasarle parametros a la url "/:parametro"
   { path: 'pokemon/:id', component: PokemonDetailComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'home' }
+  { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 
 @NgModule({

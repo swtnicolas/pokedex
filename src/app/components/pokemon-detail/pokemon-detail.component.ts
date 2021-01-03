@@ -18,6 +18,8 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
   public backgroundColor2: string = `linear-gradient(180deg, #${this.color1} 34%, #${this.color2} 100%)`;
   private contador: number = 0
 
+  public loading: boolean = true;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -27,7 +29,6 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
   ) { }
 
   ngOnInit(): void {
-    window.scroll(0, 0);
     this.getPokemonDetail();
   }
 
@@ -41,9 +42,10 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
         .then(pokemonDetail => this.pokemonDetail = pokemonDetail)
       this.pokemonDetail.height = this.pokemonDetail.height / 10;
       this.pokemonDetail.weight = this.pokemonDetail.weight / 10;
+      this.loading = false;
     } catch (error) {
       if (error) {
-        this.router.navigateByUrl('/pokemons');
+        this.router.navigateByUrl('/pokemones');
       }
     }
   }

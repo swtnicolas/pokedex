@@ -1,88 +1,137 @@
-<app-navbar></app-navbar>
-<section>
-  <form (keydown.enter)="$event.preventDefault()">
-    <input
-      type="text"
-      name="search"
-      placeholder="Search by Name or ID"
-      (keyup)="searchPokemon(searchText.value)"
-      #searchText
-      autocomplete="off"
-    />
-    <i
-      class="fas fa-backspace"
-      *ngIf="this.inputKey.length !== 0"
-      (click)="searchPokemon((searchText.value = ''))"
-    ></i>
-  </form>
-  <ng-container
-    *ngIf="this.inputKey.length !== 0; then searchList; else allList"
-  >
-  </ng-container>
-  <!-- ------------------------ - ------------------------ -->
-  <ng-template #allList>
-    <article
-      class="cards"
-      *ngFor="let pokemon of pokemons | slice: lowValue:highValue"
+<div class="pokemons">
+  <app-navbar></app-navbar>
+  <section class="animatedFast fadeIn">
+    <form (keydown.enter)="$event.preventDefault()">
+      <input
+        type="text"
+        name="search"
+        placeholder="Buscar por Nombre o ID"
+        (keyup.enter)="trigger.closePanel()"
+        (keyup)="searchPokemon(searchText.value); resetpage()"
+        #searchText
+        autocomplete="off"
+        [formControl]="control"
+        [matAutocomplete]="auto"
+        #trigger="matAutocompleteTrigger"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let pokemon of filteredPokemons | async"
+          [value]="pokemon"
+          (click)="searchPokemon(searchText.value); resetpage()"
+        >
+          {{ pokemon }}
+        </mat-option>
+      </mat-autocomplete>
+      <i
+        class="fas fa-backspace"
+        *ngIf="this.inputKey.length !== 0"
+        (click)="searchPokemon((searchText.value = ''))"
+      ></i>
+    </form>
+    <div class="bgLoading" *ngIf="loading">
+      <mat-spinner
+        class="loading"
+        strokeWidth="10"
+        diameter="200"
+        color="warn"
+      ></mat-spinner>
+    </div>
+    <ng-container
+      *ngIf="this.inputKey.length !== 0; then searchList; else allList"
     >
-      <div class="cards-content">
-        <h3 class="cards-content-id">N.º{{ pokemon.id | number: "3.0" }}</h3>
-        <h2 class="cards-content-name">{{ pokemon.name | titlecase }}</h2>
+    </ng-container>
+    <!-- ------------------------ - ------------------------ -->
+    <ng-template #allList>
+      <article
+        class="cards animatedFast fadeIn"
+        *ngFor="let pokemon of pokemons | slice: lowValue1:highValue1"
+      >
+        <div class="cards-content">
+          <p class="cards-content-id">N.º{{ pokemon.id | number: "3.0" }}</p>
+          <p class="cards-content-name">{{ pokemon.name | titlecase }}</p>
+          <img
+            class="cards-img"
+            [src]="pokemon.img"
+            alt="{{ pokemon.name }}"
+            appImgPreload="./assets/img/0.png"
+            (click)="onPokemon(pokemon)"
+            (load)="imgLoading()"
+          />
+        </div>
+      </article>
+      <div class="paginator animatedFast fadeIn">
+        <mat-paginator
+          color="warn"
+          [length]="length1"
+          [pageIndex]="pageIndex1"
+          [pageSize]="pageSize1"
+          (page)="getPaginatorData($event)"
+          [pageSizeOptions]="pageSizeOptions1"
+          [showFirstLastButtons]="true"
+        >
+        </mat-paginator>
+      </div>
+    </ng-template>
+    <!-- ------------------------ - ------------------------ -->
+    <ng-template #searchList>
+      <div class="nopokemon animatedFast fadeIn" *ngIf="pokemons2.length === 0">
+        <p>
+          No se han encontrado resultados para tu búsqueda:
+          <br />
+          <strong>{{ this.inputKey }}</strong>
+        </p>
+      </div>
+      <div
+        class="yespokemon animatedFast fadeIn"
+        *ngIf="pokemons2.length === 1"
+      >
+        <p>
+          Se encontró <strong>{{ this.pokemons2.length }}</strong> resultado
+          para tu búsqueda:
+          <br />
+          <strong>{{ this.inputKey }}</strong>
+        </p>
+      </div>
+      <div class="yespokemon animatedFast fadeIn" *ngIf="pokemons2.length > 1">
+        <p>
+          Se encontraron <strong>{{ this.pokemons2.length }}</strong> resultados
+          para tu búsqueda:
+          <br />
+          <strong>{{ this.inputKey }}</strong>
+        </p>
+      </div>
+      <article
+        class="cards animatedFast fadeIn"
+        *ngFor="let pokemon of pokemons2 | slice: lowValue2:highValue2"
+      >
+        <div class="cards-content">
+          <p class="cards-content-id">N.º{{ pokemon.id | number: "3.0" }}</p>
+          <p class="cards-content-name">{{ pokemon.name | titlecase }}</p>
+        </div>
         <img
           class="cards-img"
           [src]="pokemon.img"
           alt="{{ pokemon.name }}"
           appImgPreload="./assets/img/0.png"
           (click)="onPokemon(pokemon)"
+          (load)="imgLoading()"
         />
+      </article>
+      <div class="paginator animatedFast fadeIn">
+        <mat-paginator
+          color="warn"
+          [length]="this.pokemons2.length"
+          [pageIndex]="pageIndex2"
+          [pageSize]="pageSize2"
+          (page)="getPaginatorData($event)"
+          [pageSizeOptions]="pageSizeOptions2"
+          [showFirstLastButtons]="true"
+        >
+        </mat-paginator>
       </div>
-    </article>
-    <div class="paginator">
-      <mat-paginator
-        [length]="length"
-        [pageSize]="pageSize"
-        (page)="getPaginatorData($event)"
-        [pageSizeOptions]="pageSizeOptions"
-        [showFirstLastButtons]="true"
-      >
-      </mat-paginator>
-    </div>
-  </ng-template>
-  <!-- ------------------------ - ------------------------ -->
-  <ng-template #searchList>
-    <div class="nopokemon" *ngIf="pokemons2.length == 0">
-      <p>
-        No results found for your Pokemons search:
-        <br />
-        <strong>{{ this.inputKey }}</strong>
-      </p>
-    </div>
-    <article
-      class="cards"
-      *ngFor="let pokemon of pokemons2 | slice: lowValue:highValue"
-    >
-      <div class="cards-content">
-        <h3 class="cards-content-id">N.º{{ pokemon.id | number: "3.0" }}</h3>
-        <h2 class="cards-content-name">{{ pokemon.name | titlecase }}</h2>
-      </div>
-      <img
-        class="cards-img"
-        [src]="pokemon.img"
-        alt="{{ pokemon.name }}"
-        appImgPreload="./assets/img/0.png"
-        (click)="onPokemon(pokemon)"
-      />
-    </article>
-    <div class="paginator">
-      <mat-paginator
-        [length]="this.pokemons2.length"
-        [pageSize]="pageSize"
-        (page)="getPaginatorData($event)"
-        [pageSizeOptions]="pageSizeOptions"
-        [showFirstLastButtons]="true"
-      >
-      </mat-paginator>
-    </div>
-  </ng-template>
-</section>
-<app-footer></app-footer>
+    </ng-template>
+  </section>
+  <div></div>
+  <app-footer></app-footer>
+</div>

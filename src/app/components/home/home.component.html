@@ -1,15 +1,17 @@
 <div class="home">
   <app-navbar></app-navbar>
-  <section>
-    <h2>Pokédex v.1.0</h2>
+  <section class="animatedFast fadeIn">
+    <h2>Pokédex</h2>
     <img
       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/female/25.gif"
       alt="Pikachu.gif"
     />
-    <button [routerLink]="['/pokemons']">Go to the Pokédex</button>
+    <button [routerLink]="['/pokemones']">Ir a la Pokédex</button>
     <p *ngIf="this.limit > 0">
-      This site currently contains: <strong>{{ this.limit }} Pokemons</strong>
+      Actualmente el sitio contiene:
+      <strong>¡{{ this.limit }} Pokémones!</strong>
     </p>
+    <p>Si llegasen a existir nuevos, se añadirán de forma automática</p>
   </section>
   <app-footer></app-footer>
 </div>
