@@ -131,7 +131,6 @@ export class PokemonsComponent implements OnInit {
           let id = pokemon.id.toString();
           if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
             pokemonSearch.push(pokemon);
-            console.log(poke);
           }
         }
         this.pokemons2 = pokemonSearch;
