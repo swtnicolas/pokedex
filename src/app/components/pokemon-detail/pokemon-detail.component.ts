@@ -11,12 +11,12 @@ import { ColorType } from 'src/interfaces';
 })
 export class PokemonDetailComponent implements OnInit, AfterViewChecked {
 
-  public pokemonDetail: any
-  private color1: string = 'ffffff'
-  private color2: string = '707070'
+  public pokemonDetail: any;
+  private color1: string = 'ffffff';
+  private color2: string = '707070';
   public backgroundColor1: string = this.color1;
   public backgroundColor2: string = `linear-gradient(180deg, #${this.color1} 34%, #${this.color2} 100%)`;
-  private contador: number = 0
+  private contador: number = 0;
 
   public loading: boolean = true;
 
@@ -39,25 +39,23 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
   async getPokemonDetail() {
     try {
       await this.dataService.getPokemonsDetail(this.activatedRoute.snapshot.params.id)
-        .then(pokemonDetail => this.pokemonDetail = pokemonDetail)
+        .then(pokemonDetail => this.pokemonDetail = pokemonDetail);
       this.pokemonDetail.height = this.pokemonDetail.height / 10;
       this.pokemonDetail.weight = this.pokemonDetail.weight / 10;
       this.loading = false;
     } catch (error) {
-      if (error) {
-        this.router.navigateByUrl('/pokemones');
-      }
+      this.router.navigateByUrl('/pokemones');
     }
   }
 
   back(): void {
-    this.navigation.back()
+    this.navigation.back();
   }
 
   getTypeColor(type: string): any {
     if (type) {
       const Color: any = ColorType;
-      this.contador += 1
+      this.contador += 1;
       if (this.contador === 1) {
         this.color1 = Color[type];
       }

@@ -19,31 +19,31 @@
         alt="{{ this.pokemonDetail.name }}"
         appImgPreload="./assets/img/0.png"
       />
-      <h1 class="card-title">
+      <h2 class="card-title">
         {{ this.pokemonDetail.name | titlecase }}
         <span>N.º{{ this.pokemonDetail.id | number: "3.0" }}</span>
-      </h1>
+      </h2>
       <div class="card-core">
         <div class="card-core-exp">
-          <p>
+          <span>
             Exp
             <br />
             <strong>{{ this.pokemonDetail.base_experience }} </strong>
-          </p>
+          </span>
         </div>
         <div class="card-core-height">
-          <p>
+          <span>
             Altura
             <br />
             <strong> {{ this.pokemonDetail.height }} m </strong>
-          </p>
+          </span>
         </div>
         <div class="card-core-weight">
-          <p>
+          <span>
             Peso
             <br />
             <strong> {{ this.pokemonDetail.weight }} Kg </strong>
-          </p>
+          </span>
         </div>
       </div>
       <div class="card-types">
@@ -52,46 +52,46 @@
           [style.background]="getTypeColor(type.type.name)"
           class="card-types-color"
         >
-          <p>{{ type.type.name | titlecase }}</p>
+          <p class="card-types-text">{{ type.type.name | titlecase }}</p>
         </div>
       </div>
       <div class="card-stats">
-        <p class="card-stats-title">PS:</p>
-        <p class="card-stats-n">
+        <span class="card-stats-title">PS:</span>
+        <span class="card-stats-n">
           <strong>
             {{ this.pokemonDetail.stats[0].base_stat }}
           </strong>
-        </p>
-        <p class="card-stats-title">Ataque:</p>
-        <p class="card-stats-n">
+        </span>
+        <span class="card-stats-title">Ataque:</span>
+        <span class="card-stats-n">
           <strong>
             {{ this.pokemonDetail.stats[1].base_stat }}
           </strong>
-        </p>
-        <p class="card-stats-title">Defensa:</p>
-        <p class="card-stats-n">
+        </span>
+        <span class="card-stats-title">Defensa:</span>
+        <span class="card-stats-n">
           <strong>
             {{ this.pokemonDetail.stats[2].base_stat }}
           </strong>
-        </p>
-        <p class="card-stats-title">At. Esp:</p>
-        <p class="card-stats-n">
+        </span>
+        <span class="card-stats-title">At. Esp:</span>
+        <span class="card-stats-n">
           <strong>
             {{ this.pokemonDetail.stats[3].base_stat }}
           </strong>
-        </p>
-        <p class="card-stats-title">Def. Esp:</p>
-        <p class="card-stats-n">
+        </span>
+        <span class="card-stats-title">Def. Esp:</span>
+        <span class="card-stats-n">
           <strong>
             {{ this.pokemonDetail.stats[4].base_stat }}
           </strong>
-        </p>
-        <p class="card-stats-title">Vel:</p>
-        <p class="card-stats-n">
+        </span>
+        <span class="card-stats-title">Vel:</span>
+        <span class="card-stats-n">
           <strong>
             {{ this.pokemonDetail.stats[5].base_stat }}
           </strong>
-        </p>
+        </span>
       </div>
     </div>
   </div>

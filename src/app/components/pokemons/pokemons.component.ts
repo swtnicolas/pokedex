@@ -16,10 +16,10 @@ export class PokemonsComponent implements OnInit {
   public limit: number = 0;
   public pokemons: any[] = [];
   public pokemons2: any[] = [];
-  public inputKey: string = '';
-  private initialPokemonsPerPage: number = 60;
 
   // Paginador
+  private initialPokemonsPerPage: number = 60;
+
   public pageSize1: number = this.initialPokemonsPerPage;
   public pageIndex1: number = 0;
   public lowValue1: number = this.pageIndex1 * this.pageSize1;
@@ -35,6 +35,10 @@ export class PokemonsComponent implements OnInit {
   // Estado del paginador (true = Paginador allList / false = Paginador searchList)
   public p1: boolean = true;
 
+  // Buscador
+  public inputKey: string = '';
+  private samekey: string = '';
+
   // Autocompletar
   public control = new FormControl();
   public pokemonsNames: string[] = [];
@@ -42,7 +46,6 @@ export class PokemonsComponent implements OnInit {
 
   // Progress Spinner
   public loading: boolean = true;
-
   constructor(
     private dataService: PokedataService,
     private router: Router,
@@ -106,7 +109,6 @@ export class PokemonsComponent implements OnInit {
       this.lowValue1 = this.pageIndex1 * this.pageSize1;
       this.highValue1 = this.lowValue1 + this.pageSize1;
     } else {
-      console.log(event);
       this.pageSize2 = event.pageSize;
       this.pageIndex2 = event.pageIndex;
       this.lowValue2 = this.pageIndex2 * this.pageSize2;
@@ -116,21 +118,23 @@ export class PokemonsComponent implements OnInit {
 
   // Metodo del formulario
   searchPokemon(poke: string): any {
-    // Busqueda
-    this.inputKey = poke
-    let pokemonSearch: any[] = [];
-    poke = poke.toLowerCase();
-    for (let pokemon of this.pokemons) {
-      let name = pokemon.name.toLowerCase();
-      let id = pokemon.id.toString();
-      if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
-        pokemonSearch.push(pokemon)
-      }
-    }
+    this.inputKey = poke;
     // Validación de la busqueda de pokemones
-    if (poke != '') {
-      this.p1 = false;
-      this.pokemons2 = pokemonSearch;
+    if (poke != '' && poke) {
+      if (poke !== this.samekey) {
+        this.samekey = poke;
+        this.p1 = false;
+        let pokemonSearch: any[] = [];
+        poke = poke.toLowerCase();
+        for (let pokemon of this.pokemons) {
+          let name = pokemon.name.toLowerCase();
+          let id = pokemon.id.toString();
+          if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
+            pokemonSearch.push(pokemon);
+          }
+        }
+        this.pokemons2 = pokemonSearch;
+      }
     } else {
       this.p1 = true;
       this.pokemons2 = [];
@@ -142,20 +146,19 @@ export class PokemonsComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
-    let pokemonSearch: any[] = [];
-    let names: string[] = []
-    poke = poke.toLowerCase();
-    for (let pokemon of this.pokemons) {
-      let name = pokemon.name.toLowerCase();
-      let id = pokemon.id.toString();
-      if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
-        names.push(pokemon.name);
-        pokemonSearch.push(pokemon)
-      }
-    }
     // Validación del autocompletar, si se inserta un digito en el buscador
-    // Para evitar duplicacion de sugerencia en el autocompletado cuando la busqueda encuentra al pokemon, se deshabilita el autocompletar cuando "pokemonSearch.length > 1"
-    if (poke != '' && pokemonSearch.length > 1) {
+    if (poke !== '') {
+      let pokemonSearch: any[] = [];
+      let names: string[] = []
+      poke = poke.toLowerCase();
+      for (let pokemon of this.pokemons) {
+        let name = pokemon.name.toLowerCase();
+        let id = pokemon.id.toString();
+        if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
+          names.push(pokemon.name);
+          pokemonSearch.push(pokemon);
+        }
+      }
       names.sort((a, b) => {
         // Ordena los resultados por nombre que coincida con la posición de la palabra clave en el nombre
         if (a.toLowerCase().indexOf(poke.toLowerCase()) > b.toLowerCase().indexOf(poke.toLowerCase())) {
@@ -205,6 +208,6 @@ export class PokemonsComponent implements OnInit {
     sessionStorage.setItem('pageSize2', JSON.stringify(this.pageSize2));
     sessionStorage.setItem('pageIndex1', JSON.stringify(this.pageIndex1));
     sessionStorage.setItem('pageIndex2', JSON.stringify(this.pageIndex2));
-    this.router.navigate(['/pokemon', pokemon.id])
+    this.router.navigate(['/pokemon', pokemon.id]);
   }
 }
