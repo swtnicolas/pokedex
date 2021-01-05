@@ -119,25 +119,25 @@ export class PokemonsComponent implements OnInit {
   // Metodo del formulario
   searchPokemon(poke: string): any {
     this.inputKey = poke;
+    poke = poke.toLowerCase();
     // Validación de la busqueda de pokemones
     if (poke != '' && poke) {
       if (poke !== this.samekey) {
         this.samekey = poke;
         this.p1 = false;
         let pokemonSearch: any[] = [];
-        poke = poke.toLowerCase();
         for (let pokemon of this.pokemons) {
           let name = pokemon.name.toLowerCase();
           let id = pokemon.id.toString();
           if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
             pokemonSearch.push(pokemon);
+            console.log(poke);
           }
         }
         this.pokemons2 = pokemonSearch;
       }
     } else {
       this.p1 = true;
-      this.pokemons2 = [];
     }
   }
 
