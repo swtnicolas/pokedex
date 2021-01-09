@@ -6,13 +6,11 @@ import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-deta
 import { PokemonsComponent } from './components/pokemons/pokemons.component';
 
 const routes: Routes = [
-  // { path: '', component: HomeComponent },
-  { path: 'inicio', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'sobre-pokedex', component: AboutComponent },
   { path: 'pokemones', component: PokemonsComponent },
-  // TODO| Para pasarle parametros a la url "/:parametro"
   { path: 'pokemon/:id', component: PokemonDetailComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
+  { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 
 @NgModule({

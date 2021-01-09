@@ -1,10 +1,21 @@
+@import "~normalize.css";
+
 $predominante: #b12626;
 
-@import "~normalize.css";
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 @font-face {
   font-family: Pocket-Monk;
   src: url("^./assets/fonts/Pocket-Monk.otf");
+  font-display: swap;
 }
 
 // Animaciones
@@ -33,7 +44,7 @@ $predominante: #b12626;
   margin: 0px 4px 0px 4px !important;
 }
 .mat-paginator-range-label {
-  margin: 0 18px 0 8px !important;
+  margin: 0 12px 0 8px !important;
 }
 
 .mat-paginator-icon {

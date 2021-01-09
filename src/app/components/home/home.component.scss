@@ -8,25 +8,26 @@ $hover2: #d61e1e;
   grid-template-rows: auto 1fr auto;
 }
 
-h2 {
+h1 {
   font-family: Pocket-Monk;
   font-weight: 100;
   font-size: 40px;
   text-align: center;
-  margin: 25px 0 25px 0;
+  margin: 10px 25px;
+  line-height: 1.1;
 }
 
 img {
-  width: 228px;
-  height: 228px;
+  width: 215px;
+  height: 215px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
 button {
-  margin-top: 31px;
-  margin-bottom: 31px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
@@ -50,14 +51,14 @@ p {
 }
 
 @media only screen and (min-width: 576px) {
-  h2 {
+  h1 {
     font-size: 50px;
-    margin: 25px 0 25px 0;
+    margin: 25px;
   }
 
   img {
-    width: 300px;
-    height: 300px;
+    width: 285px;
+    height: 285px;
   }
 
   button {
@@ -74,14 +75,14 @@ p {
 }
 
 @media only screen and (min-width: 1920px) {
-  h2 {
+  h1 {
     font-size: 65px;
-    margin: 65px 0 60px 0;
+    margin: 40px 0 40px 0;
   }
 
   img {
-    width: 370px;
-    height: 370px;
+    width: 350px;
+    height: 350px;
   }
 
   button {

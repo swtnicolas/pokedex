@@ -1,8 +1,12 @@
 <nav id="mySidenav" class="sidenav">
   <a class="sidenav-closebtn" (click)="closeNav()"> &times; </a>
   <ul>
-    <li routerLinkActive="active" (click)="closeNav()">
-      <a class="sidenav-a" [routerLink]="['/inicio']">Inicio</a>
+    <li
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="closeNav()"
+    >
+      <a class="sidenav-a" [routerLink]="['']">Inicio</a>
     </li>
     <li routerLinkActive="active" (click)="closeNav()">
       <a class="sidenav-a" [routerLink]="['/pokemones']">Pokémones</a>
@@ -17,5 +21,5 @@
 <header>
   <i style="cursor: pointer" class="fas fa-bars" (click)="openNav()"></i>
   <img id="logo-img" src="assets/img/pokedex-logo.png" alt="Logotipo" />
-  <h1 id="logo-title">PokéDex</h1>
+  <p id="logo-title">PokéDex</p>
 </header>
