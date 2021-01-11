@@ -40,6 +40,7 @@ export class PokemonsComponent implements OnInit {
   private samekey: string = '';
 
   // Autocompletar
+  public toHighlight: string = '';
   public control = new FormControl();
   public pokemonsNames: string[] = [];
   public filteredPokemons!: Observable<string[]>;
@@ -120,8 +121,9 @@ export class PokemonsComponent implements OnInit {
   searchPokemon(poke: string): any {
     this.inputKey = poke;
     poke = poke.toLowerCase();
-    // Validación de la busqueda de pokemones
+    // Validacion para evitar busqueda en blanco
     if (poke != '' && poke) {
+      // Validacion para evitar multiples busquedas
       if (poke !== this.samekey) {
         this.samekey = poke;
         this.p1 = false;
@@ -141,41 +143,42 @@ export class PokemonsComponent implements OnInit {
   }
 
   autocomplete(poke: string): any {
+    // Llama al resto de metodos del autocompletar
     this.filteredPokemons = this.control.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      // Validación del autocompletar, si se inserta un digito en el buscador
+      map(value => poke.length >= 1 ? this._filter(value) : [])
     );
-    // Validación del autocompletar, si se inserta un digito en el buscador
-    if (poke !== '') {
-      let pokemonSearch: any[] = [];
-      let names: string[] = []
-      poke = poke.toLowerCase();
-      for (let pokemon of this.pokemons) {
-        let name = pokemon.name.toLowerCase();
-        let id = pokemon.id.toString();
-        if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
-          names.push(pokemon.name);
-          pokemonSearch.push(pokemon);
+    // Validacion para evitar busqueda en blanco
+    if (poke != '') {
+      // Validacion para evitar multiples busquedas
+      if (poke !== this.toHighlight) {
+        this.toHighlight = poke;
+        let names: string[] = []
+        poke = poke.toLowerCase();
+
+        for (let pokemon of this.pokemons) {
+          let name = pokemon.name.toLowerCase();
+          let id = pokemon.id.toString();
+          if (name.indexOf(poke) >= 0 || id.indexOf(poke) >= 0) {
+            names.push(pokemon.name);
+          }
         }
-      }
-      names.sort((a, b) => {
-        // Ordena los resultados por nombre que coincida con la posición de la palabra clave en el nombre
-        if (a.toLowerCase().indexOf(poke.toLowerCase()) > b.toLowerCase().indexOf(poke.toLowerCase())) {
-          return 1;
-        } else if (a.toLowerCase().indexOf(poke.toLowerCase()) < b.toLowerCase().indexOf(poke.toLowerCase())) {
-          return -1;
-        } else {
-          if (a > b)
+        names.sort((a, b) => {
+          // Ordena los resultados por nombre que coincida con la posición de la palabra clave en el nombre
+          if (a.toLowerCase().indexOf(poke.toLowerCase()) > b.toLowerCase().indexOf(poke.toLowerCase())) {
             return 1;
-          else
+          } else if (a.toLowerCase().indexOf(poke.toLowerCase()) < b.toLowerCase().indexOf(poke.toLowerCase())) {
             return -1;
-        }
-      });
-      // Inserta lo que se esta buscando al principio
-      names.unshift(poke);
-      this.pokemonsNames = names;
-    } else {
-      this.pokemonsNames = [];
+          } else {
+            if (a > b)
+              return 1;
+            else
+              return -1;
+          }
+        });
+        this.pokemonsNames = names;
+      }
     }
   }
 

@@ -49,7 +49,6 @@ form {
     text-align: center;
     border: none;
     border-bottom: 2px solid $search;
-    -webkit-transition: 0.5s;
     transition: 0.2s;
     outline: none;
     font-weight: 700;
@@ -72,6 +71,20 @@ form {
 
   .fa-backspace:hover {
     color: $hover2;
+  }
+
+  .fa-search {
+    position: absolute;
+    padding: 0;
+    right: 10px;
+    font-size: 26px;
+    color: $search;
+    margin: 3px;
+    cursor: pointer;
+  }
+
+  .fa-search:hover {
+    color: $hover;
   }
 }
 
@@ -193,6 +206,11 @@ form {
       border-bottom: 3px solid $predominante;
     }
     .fa-backspace {
+      padding: 0px;
+      font-size: 30px;
+      margin: 4px;
+    }
+    .fa-search {
       padding: 0px;
       font-size: 30px;
       margin: 4px;

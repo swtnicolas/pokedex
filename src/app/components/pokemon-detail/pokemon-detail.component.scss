@@ -29,6 +29,7 @@ section {
 }
 .fa-chevron-left {
   position: fixed;
+  z-index: 10;
   color: $titulo;
   text-shadow: -1px 0px 11px rgba(0, 0, 0, 1);
   font-size: 27px;
@@ -43,7 +44,7 @@ section {
 .card {
   background: #ffffff;
   background: linear-gradient(180deg, #ffffff00 25%, #ffffff 49%, #c3c3c3 100%);
-  border-radius: 10%;
+  border-radius: 30px;
   margin: 30px 0;
   &-img {
     display: block;
@@ -53,7 +54,8 @@ section {
     height: 200px;
   }
   &-title {
-    margin: 0px 5px 5px 5px;
+    // margin: 0px 5px 5px 5px;
+    margin: 0;
     text-align: center;
     font-size: 19px;
     font-weight: 600;
@@ -62,9 +64,33 @@ section {
       font-weight: 500;
       margin-left: 10px;
     }
+    .gender {
+      margin-left: 10px;
+    }
+  }
+  &-isLegendary {
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    text-shadow: 1px 1px 4px #ffc400;
+  }
+  &-isMythical {
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    text-shadow: 1px 1px 4px #83838393;
+  }
+  &-isBaby {
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    text-shadow: 1px 1px 4px #0051ffa1;
   }
   &-core {
-    margin-bottom: 10px;
+    margin: 10px 0 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
@@ -86,6 +112,27 @@ section {
       padding: 5px;
     }
   }
+  &-description {
+    width: 300px;
+    text-align: center;
+    p {
+      margin: 0 20px;
+    }
+  }
+  h4 {
+    text-align: center;
+    margin: 10px 0 5px;
+    font-weight: 600;
+  }
+  &-abilities {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    text-align: center;
+    p {
+      margin: 2px 5px;
+    }
+  }
   &-stats {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
@@ -94,7 +141,112 @@ section {
     row-gap: 2px;
     font-size: $font320;
     padding: 10px 0;
-    margin: 0 20px;
+    margin: 0 30px;
+  }
+  &-captureRate {
+    text-align: center;
+  }
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, #00000000, #000000bf, #00000000);
+}
+
+h3 {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.card-evolution-a {
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  row-gap: 10px;
+  width: 300px;
+  font-size: $font320;
+  text-align: center;
+  margin-bottom: 10px;
+  &-2 {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    row-gap: 10px;
+  }
+  p {
+    margin: 0;
+  }
+  &-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    box-shadow: 2px 3px #00000028;
+  }
+  .fa-chevron-down {
+    position: relative;
+    top: 5px;
+  }
+}
+
+.card-evolution-aa {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  column-gap: 20px;
+  width: 300px;
+  font-size: $font320;
+  text-align: center;
+  &-2 {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    row-gap: 10px;
+  }
+  p {
+    margin: 0;
+  }
+  &-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    box-shadow: 2px 3px #00000028;
+  }
+  .fa-chevron-right {
+    position: relative;
+    top: -42px;
+    left: -44px;
+  }
+}
+
+.card-evolution-b {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  column-gap: 14px;
+  width: 300px;
+  font-size: $font320;
+  text-align: center;
+  p {
+    margin: 0;
+  }
+  &-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    box-shadow: 2px 3px #00000028;
+  }
+  .fa-chevron-right {
+    position: relative;
+    top: -42px;
+    left: -38px;
   }
 }
 

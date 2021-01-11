@@ -16,13 +16,53 @@
       <img
         class="card-img"
         [src]="this.pokemonDetail.sprites.front_default"
-        alt="{{ this.pokemonDetail.name }}"
+        title="{{ this.pokemonDetail.name | titlecase }}"
+        alt="{{ this.pokemonDetail.name | titlecase }}"
         appImgPreload="./assets/img/0.png"
       />
       <h2 class="card-title">
         {{ this.pokemonDetail.name | titlecase }}
         <span>N.º{{ this.pokemonDetail.id | number: "3.0" }}</span>
+        <i
+          *ngIf="
+            this.pokemonSpecies.gender_rate != -1 &&
+            this.pokemonSpecies.gender_rate != 8 &&
+            this.pokemonSpecies.gender_rate != 0
+          "
+          title="Hembra/Macho"
+          class="fas fa-venus-mars gender"
+        ></i>
+        <i
+          *ngIf="this.pokemonSpecies.gender_rate == 0"
+          title="Macho"
+          class="fas fa-mars fa-lg gender"
+        ></i>
+        <i
+          *ngIf="this.pokemonSpecies.gender_rate == 8"
+          title="Hembra"
+          class="fas fa-venus fa-lg gender"
+        ></i>
+        <i
+          *ngIf="this.pokemonSpecies.gender_rate == -1"
+          title="Sin género"
+          class="fas fa-genderless fa-lg gender"
+        ></i>
       </h2>
+      <p
+        class="card-isLegendary"
+        *ngIf="this.pokemonSpecies.is_legendary == true"
+      >
+        Legendario
+      </p>
+      <p
+        class="card-isMythical"
+        *ngIf="this.pokemonSpecies.is_mythical == true"
+      >
+        Místico
+      </p>
+      <p class="card-isBaby" *ngIf="this.pokemonSpecies.is_baby == true">
+        Bebé
+      </p>
       <div class="card-core">
         <div class="card-core-exp">
           <span>
@@ -55,6 +95,24 @@
           <p class="card-types-text">{{ type.type.name | titlecase }}</p>
         </div>
       </div>
+      <div class="card-description">
+        <p *ngIf="pokemonDescription.length > 1">
+          {{ this.pokemonDescription[0] }}
+        </p>
+        <p *ngIf="pokemonDescription.length < 1">
+          {{ this.pokemonSpecies.flavor_text_entries[0].flavor_text }}
+        </p>
+      </div>
+      <h4 *ngIf="this.pokemonDetail.abilities.length > 1">Habilidades:</h4>
+      <h4 *ngIf="this.pokemonDetail.abilities.length == 1">Habilidad:</h4>
+      <div class="card-abilities">
+        <div *ngFor="let ability of this.pokemonDetail.abilities">
+          <p>
+            {{ ability.ability.name | titlecase }}
+          </p>
+        </div>
+      </div>
+      <hr />
       <div class="card-stats">
         <span class="card-stats-title">PS:</span>
         <span class="card-stats-n">
@@ -93,6 +151,161 @@
           </strong>
         </span>
       </div>
+      <p class="card-captureRate">
+        Tasa de captura:
+        <strong>
+          {{ this.pokemonSpecies.capture_rate | number: "1.0-1" }}%
+        </strong>
+      </p>
+      <hr />
+      <ng-container *ngIf="this.evolutionChain2.length < 1; else twoEvolutions">
+        <h3>No hay evoluciones</h3>
+      </ng-container>
+      <ng-template #twoEvolutions>
+        <ng-container
+          *ngIf="this.evolutionChain3.length < 1; else allEvolutions"
+        >
+          <h3>Evoluciones</h3>
+          <ng-container
+            *ngIf="this.evolutionChain2.length > 1; else twoEvolutionsSimple"
+          >
+            <div class="card-evolution-a">
+              <div class="card-evolution-a-1">
+                <div *ngFor="let pokemon of this.evolutionChain1">
+                  <strong>{{ pokemon.name | titlecase }}</strong>
+                  <br />
+                  <span> N.º{{ pokemon.id | number: "3.0" }}</span>
+                  <img
+                    class="card-evolution-a-img"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+                      pokemon.id
+                    }}.png"
+                    alt="{{ pokemon.name | titlecase }}"
+                    title="{{ pokemon.name | titlecase }}"
+                    appImgPreload="./assets/img/0.png"
+                    (click)="onPokemon(pokemon)"
+                  />
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+              <div class="card-evolution-a-2">
+                <div *ngFor="let pokemon of this.evolutionChain2">
+                  <strong>{{ pokemon.name | titlecase }}</strong>
+                  <br />
+                  <p>N.º{{ pokemon.id | number: "3.0" }}</p>
+                  <img
+                    class="card-evolution-a-img"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+                      pokemon.id
+                    }}.png"
+                    alt="{{ pokemon.name | titlecase }}"
+                    title="{{ pokemon.name | titlecase }}"
+                    appImgPreload="./assets/img/0.png"
+                    (click)="onPokemon(pokemon)"
+                  />
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #twoEvolutionsSimple>
+            <div class="card-evolution-aa">
+              <div class="card-evolution-aa-1">
+                <div *ngFor="let pokemon of this.evolutionChain1">
+                  <strong>{{ pokemon.name | titlecase }}</strong>
+                  <br />
+                  <span> N.º{{ pokemon.id | number: "3.0" }}</span>
+                  <img
+                    class="card-evolution-aa-img"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+                      pokemon.id
+                    }}.png"
+                    alt="{{ pokemon.name | titlecase }}"
+                    title="{{ pokemon.name | titlecase }}"
+                    appImgPreload="./assets/img/0.png"
+                    (click)="onPokemon(pokemon)"
+                  />
+                </div>
+              </div>
+              <div class="card-evolution-aa-2">
+                <div *ngFor="let pokemon of this.evolutionChain2">
+                  <strong>{{ pokemon.name | titlecase }}</strong>
+                  <br />
+                  <p>N.º{{ pokemon.id | number: "3.0" }}</p>
+                  <img
+                    class="card-evolution-aa-img"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+                      pokemon.id
+                    }}.png"
+                    alt="{{ pokemon.name | titlecase }}"
+                    title="{{ pokemon.name | titlecase }}"
+                    appImgPreload="./assets/img/0.png"
+                    (click)="onPokemon(pokemon)"
+                  />
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </ng-template>
+      <ng-template #allEvolutions>
+        <h3>Evoluciones</h3>
+        <div class="card-evolution-b">
+          <div class="card-evolution-b-1">
+            <div *ngFor="let pokemon of this.evolutionChain1">
+              <strong>{{ pokemon.name | titlecase }}</strong>
+              <br />
+              <p>N.º{{ pokemon.id | number: "3.0" }}</p>
+              <img
+                class="card-evolution-b-img"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+                  pokemon.id
+                }}.png"
+                alt="{{ pokemon.name | titlecase }}"
+                title="{{ pokemon.name | titlecase }}"
+                appImgPreload="./assets/img/0.png"
+                (click)="onPokemon(pokemon)"
+              />
+            </div>
+          </div>
+          <div class="card-evolution-b-2">
+            <div *ngFor="let pokemon of this.evolutionChain2">
+              <strong>{{ pokemon.name | titlecase }}</strong>
+              <br />
+              <p>N.º{{ pokemon.id | number: "3.0" }}</p>
+              <img
+                class="card-evolution-b-img"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+                  pokemon.id
+                }}.png"
+                alt="{{ pokemon.name | titlecase }}"
+                title="{{ pokemon.name | titlecase }}"
+                appImgPreload="./assets/img/0.png"
+                (click)="onPokemon(pokemon)"
+              />
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="card-evolution-b-3">
+            <div *ngFor="let pokemon of this.evolutionChain3">
+              <strong>{{ pokemon.name | titlecase }}</strong>
+              <br />
+              <p>N.º{{ pokemon.id | number: "3.0" }}</p>
+              <img
+                class="card-evolution-b-img"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+                  pokemon.id
+                }}.png"
+                alt="{{ pokemon.name | titlecase }}"
+                title="{{ pokemon.name | titlecase }}"
+                appImgPreload="./assets/img/0.png"
+                (click)="onPokemon(pokemon)"
+              />
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
 </section>

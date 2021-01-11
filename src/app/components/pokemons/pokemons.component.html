@@ -18,11 +18,11 @@
       />
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option
-          *ngFor="let pokemon of filteredPokemons | async"
+          *ngFor="let pokemon of filteredPokemons | async | slice: 0:25"
           [value]="pokemon"
           (click)="searchPokemon(searchText.value); resetpage()"
         >
-          {{ pokemon }}
+          <span [innerHTML]="pokemon | highlight: toHighlight"></span>
         </mat-option>
       </mat-autocomplete>
       <i
@@ -30,6 +30,12 @@
         *ngIf="this.inputKey.length !== 0"
         (click)="searchPokemon((searchText.value = '')); resetpage()"
       ></i>
+      <i
+        class="fas fa-search"
+        *ngIf="this.inputKey.length == 0"
+        (click)="searchPokemon(searchText.value); resetpage()"
+      >
+      </i>
     </form>
     <div class="bgLoading" *ngIf="loading">
       <mat-spinner
@@ -55,7 +61,8 @@
           <img
             class="cards-img"
             [src]="pokemon.img"
-            alt="{{ pokemon.name }}"
+            alt="{{ pokemon.name | titlecase }}"
+            title="{{ pokemon.name | titlecase }}"
             appImgPreload="./assets/img/0.png"
             (click)="onPokemon(pokemon)"
             (load)="imgLoading()"
@@ -114,7 +121,8 @@
         <img
           class="cards-img"
           [src]="pokemon.img"
-          alt="{{ pokemon.name }}"
+          alt="{{ pokemon.name | titlecase }}"
+          title="{{ pokemon.name | titlecase }}"
           appImgPreload="./assets/img/0.png"
           (click)="onPokemon(pokemon)"
           (load)="imgLoading()"

@@ -18,6 +18,7 @@ import { PokemonsComponent } from './components/pokemons/pokemons.component';
 import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-detail.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
+import { HighlightPipe } from './pipes/highlight.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { AboutComponent } from './components/about/about.component';
     PokemonDetailComponent,
     ImgPreloadDirective,
     FooterComponent,
-    AboutComponent
+    AboutComponent,
+    HighlightPipe
   ],
   imports: [
     BrowserModule,

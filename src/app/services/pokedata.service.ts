@@ -20,4 +20,14 @@ export class PokedataService {
     return await this.http.get(`${this.url}/pokemon/${id}`)
       .toPromise();
   }
+
+  async getPokemonsSpecies(id: number): Promise<any> {
+    return await this.http.get(`${this.url}/pokemon-species/${id}`)
+      .toPromise();
+  }
+
+  async getEvolutionChain(idx: number): Promise<any> {
+    return await this.http.get(`${this.url}/evolution-chain${idx}`)
+      .toPromise();
+  }
 }
