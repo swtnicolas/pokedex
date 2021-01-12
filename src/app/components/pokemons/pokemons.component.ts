@@ -47,6 +47,11 @@ export class PokemonsComponent implements OnInit {
 
   // Progress Spinner
   public loading: boolean = true;
+  public error: any = {
+    status: false,
+    message: ''
+  }
+
   constructor(
     private dataService: PokedataService,
     private router: Router,
@@ -77,7 +82,7 @@ export class PokemonsComponent implements OnInit {
 
   async getPokemon() {
     try {
-      if (!localStorage.getItem('PokemonList')) {
+      if (!sessionStorage.getItem('PokemonList')) {
         // Si la lista no esta almacenada en el localStorage, se hacen las peticiones HTTP
         // Primera petición para saber el numero total de pokemones
         await this.dataService.getPokemons(this.limit)
@@ -89,16 +94,17 @@ export class PokemonsComponent implements OnInit {
           item.id = i + 1;
           item.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`;
         });
-        localStorage.setItem('PokemonList', JSON.stringify(this.pokemons));
+        sessionStorage.setItem('PokemonList', JSON.stringify(this.pokemons));
       } else {
         // Si la lista esta almacenada en el localStorage, se recupera
-        this.pokemons = JSON.parse(localStorage.getItem('PokemonList')!);
+        this.pokemons = JSON.parse(sessionStorage.getItem('PokemonList')!);
         this.limit = this.pokemons.length;
       }
     } catch (error) {
       console.log('Ha ocurrido un error con el servicio PokeApi:');
       console.log(error);
-      this.loading = false;
+      this.error.status = this.error.status = true
+      this.error.message = this.error.message = 'Ha ocurrido un problema con el servicio de PokeApi, inténtelo mas tarde'
     }
   }
 
