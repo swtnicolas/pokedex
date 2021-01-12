@@ -10,75 +10,100 @@ $search: #a4acaf;
   grid-template-rows: auto auto 1fr auto;
 }
 
+#app {
+  &-navbar {
+    z-index: 20;
+  }
+  &-footer {
+    z-index: 20;
+  }
+}
+
 section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 3px;
-  margin: 0 2px;
+  gap: 0.1875rem;
+  margin: 0 0.125rem;
 }
 
 .bgLoading {
-  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ffffff;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 50;
   min-width: 100%;
   min-height: 100%;
-}
-
-.loading {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  &-text {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    margin-top: 0.9375rem;
+  }
 }
 
 form {
   z-index: 5;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   grid-column: 1/4;
 
   input[type="text"] {
     width: 100%;
-    padding: 8px 20px;
+    padding: 0.5rem 1.25rem;
     margin: 0;
     box-sizing: border-box;
     text-align: center;
     border: none;
-    border-bottom: 2px solid $search;
-    -webkit-transition: 0.5s;
+    border-bottom: 0.125rem solid $search;
     transition: 0.2s;
     outline: none;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   input[type="text"]:focus {
-    border-bottom: 2px solid $predominante;
+    border-bottom: 0.125rem solid $predominante;
   }
 
   .fa-backspace {
     position: absolute;
     padding: 0;
-    right: 10px;
-    font-size: 26px;
+    right: 0.625rem;
+    font-size: 1.625rem;
     color: $predominante;
-    margin: 3px;
+    margin: 0.1875rem;
     cursor: pointer;
   }
 
   .fa-backspace:hover {
     color: $hover2;
   }
+
+  .fa-search {
+    position: absolute;
+    padding: 0;
+    right: 0.625rem;
+    font-size: 1.625rem;
+    color: $search;
+    margin: 0.1875rem;
+    cursor: pointer;
+  }
+
+  .fa-search:hover {
+    color: $hover;
+  }
 }
 
 .cards {
   background: #ffffff;
   background: linear-gradient(180deg, #ffffff 34%, #707070 100%);
-  padding: 0 0 10px 0;
+  padding: 0 0 0.625rem 0;
   border-radius: 5%;
 
   &-content {
@@ -88,14 +113,14 @@ form {
     &-id {
       margin: 0;
       padding: 0;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 500;
     }
 
     &-name {
       margin: 0;
       padding: 0;
-      font-size: 19px;
+      font-size: 1.1875rem;
       font-weight: 300;
       font-family: Pocket-Monk;
     }
@@ -103,145 +128,85 @@ form {
 
   &-img {
     display: block;
+    width: 6rem;
+    height: 6rem;
     margin-left: auto;
     margin-right: auto;
     border-radius: 50%;
-    box-shadow: 2px 5px #00000028;
+    box-shadow: 0.125rem 0.3125rem #00000028;
     background-color: #ffffff21;
     cursor: pointer;
     transition: width 0.2s;
     transition: height 0.2s;
   }
   &-img:hover {
-    width: 93px;
-    height: 93px;
+    width: 5.375rem;
+    height: 5.375rem;
   }
 }
 
 .paginator {
   grid-column: 1/4;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .nopokemon {
   grid-column: 1/4;
   text-align: center;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
   background-color: #b126267e;
   margin: 0;
-  padding: 4px 0;
+  padding: 0.25rem 0;
   border-radius: 2%;
 
   p {
     margin: 0;
-    padding: 5px;
+    padding: 0.3125rem;
   }
 }
 
 .yespokemon {
   grid-column: 1/4;
   text-align: center;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
   background-color: #266eb17e;
   margin: 0;
-  padding: 4px 0;
+  padding: 0.25rem 0;
   border-radius: 2%;
 
   p {
     margin: 0;
-    padding: 5px;
+    padding: 0.3125rem;
   }
 }
 
-@media only screen and (min-width: 470px) {
-  .cards {
-    &-content {
-      &-id {
-        font-size: 15px;
-      }
-      &-name {
-        font-size: 20px;
-      }
-    }
-    &-img {
-      width: 106px;
-      height: 106px;
-    }
-    &-img:hover {
-      width: 96px;
-      height: 96px;
-    }
-  }
-}
-
-@media only screen and (min-width: 570px) {
+@media only screen and (min-width: 576px) {
   section {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-
   form {
     grid-column: 1/5;
-    input[type="text"] {
-      width: 100%;
-      padding: 10px 20px;
-      border-bottom: 3px solid $search;
-      font-size: 16px;
-    }
-    input[type="text"]:focus {
-      border-bottom: 3px solid $predominante;
-    }
-    .fa-backspace {
-      padding: 0px;
-      font-size: 30px;
-      margin: 4px;
-    }
   }
   .paginator {
     grid-column: 1/5;
-    margin-top: 20px;
   }
   .nopokemon {
     grid-column: 1/5;
-    font-size: 15px;
   }
   .yespokemon {
     grid-column: 1/5;
-    font-size: 15px;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .cards {
-    &-img {
-      width: 120px;
-      height: 120px;
-    }
-    &-img:hover {
-      width: 110px;
-      height: 110px;
-    }
-  }
-}
-
-@media only screen and (min-width: 1024px) {
   section {
     grid-template-columns: repeat(5, 1fr);
   }
   form {
     grid-column: 1/6;
   }
-  .cards {
-    &-img {
-      width: 130px;
-      height: 130px;
-    }
-    &-img:hover {
-      width: 120px;
-      height: 120px;
-    }
-  }
   .paginator {
     grid-column: 1/6;
   }
@@ -253,23 +218,13 @@ form {
   }
 }
 
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 992px) {
   section {
     grid-template-columns: repeat(6, 1fr);
   }
   form {
     grid-column: 1/7;
   }
-  .cards {
-    &-img {
-      width: 135px;
-      height: 135px;
-    }
-    &-img:hover {
-      width: 125px;
-      height: 125px;
-    }
-  }
   .paginator {
     grid-column: 1/7;
   }
@@ -281,15 +236,17 @@ form {
   }
 }
 
-@media only screen and (min-width: 1920px) {
+@media only screen and (min-width: 1360px) {
+  app-navbar {
+    padding: 0 56px;
+    background-color: $predominante;
+  }
   section {
     grid-template-columns: repeat(10, 1fr);
   }
-
   form {
     grid-column: 1/11;
   }
-
   .paginator {
     grid-column: 1/11;
   }
@@ -301,9 +258,14 @@ form {
   }
 }
 
-@media only screen and (min-width: 2560px) {
+@media only screen and (min-width: 1900px) {
+  app-navbar {
+    padding: 0 120px;
+    background-color: $predominante;
+  }
   section {
     grid-template-columns: repeat(12, 1fr);
+    margin: 0 120px;
   }
 
   form {

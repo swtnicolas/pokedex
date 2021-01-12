@@ -1,9 +1,15 @@
 @import "~normalize.css";
+@font-face {
+  font-family: Pocket-Monk;
+  src: url("^./assets/fonts/Pocket-Monk.otf");
+  font-display: swap;
+}
 
 $predominante: #b12626;
 
 html {
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 *,
@@ -12,17 +18,8 @@ html {
   box-sizing: inherit;
 }
 
-@font-face {
-  font-family: Pocket-Monk;
-  src: url("^./assets/fonts/Pocket-Monk.otf");
-  font-display: swap;
-}
-
-// Animaciones
 .animatedFast {
-  -webkit-animation-duration: 0.4s;
   animation-duration: 0.4s;
-  -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
 
@@ -63,4 +60,36 @@ html {
 .mat-paginator-page-size .mat-select-trigger {
   color: #000000;
   font-size: 13px;
+}
+
+@media only screen and (min-width: 576px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 20px;
+  }
+
+  .mat-paginator-page-size-select {
+    margin: 0px 4px 0px 4px !important;
+  }
+  .mat-paginator-range-label {
+    margin: 0 12px 0 8px !important;
+  }
+
+  .mat-paginator-icon {
+    width: 35px !important;
+  }
+
+  .mat-icon-button {
+    width: 45px !important;
+  }
+
+  .mat-paginator,
+  .mat-paginator-page-size .mat-select-trigger {
+    font-size: 16px;
+  }
 }
