@@ -6,7 +6,7 @@ $hover: #979797;
 header {
   z-index: 5;
   display: grid;
-  grid-template-columns: 2.8125rem 2.5rem 1fr;
+  grid-template-columns: 2.9rem 2.5rem 1fr;
   background-color: $predominante;
   #logo {
     &-title {
@@ -20,14 +20,15 @@ header {
     &-img {
       width: 2.1875rem;
       padding: 0.25rem 0;
+      margin-left: 8px;
     }
   }
   .fa-bars {
     padding: 0.2rem 0;
-    text-align: left;
+    text-align: right;
     color: $titulo;
     font-size: 2rem;
-    margin: 0 0.3125rem;
+    margin-right: 5px;
     cursor: pointer;
     &:hover {
       color: $hover;

@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     try {
       // Petición para saber el numero total de pokemones
       await this.dataService.getPokemons(this.limit)
-        .then(count => this.limit = count.count)
+        .then(count => this.limit = count.count);
     } catch (error) {
       console.log('Ha ocurrido un error con el servicio PokeApi:');
       console.log(error);

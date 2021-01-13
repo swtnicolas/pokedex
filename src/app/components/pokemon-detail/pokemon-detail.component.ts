@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavigationService } from 'src/app/services/navigation.service';
@@ -69,7 +68,7 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
         .then(pokemonsSpecies => this.pokemonSpecies = pokemonsSpecies);
       this.pokemonDescription = this.pokemonSpecies.flavor_text_entries
         .filter((flavor: any) => flavor.language.name === 'es')
-        .map((item: any) => item.flavor_text)
+        .map((item: any) => item.flavor_text);
       this.pokemonSpecies.capture_rate = ((this.pokemonSpecies.capture_rate * 100) / 255);
       this.pokemonSpecies.generation.name = this.pokemonSpecies.generation.name.slice(11, 20);
       // Consigue las evoluciones por el id extraido de la url

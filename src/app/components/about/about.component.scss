@@ -7,19 +7,20 @@ $predominante: #b12626;
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 1.5rem;
   text-align: center;
-  margin: 20px 0 10px 0;
+  margin: 1.25rem 0 0.625rem 0;
 }
 
 .containerText {
-  margin: 15px 20px;
+  margin: 10px 25px 35px;
   line-height: 1.6;
 }
 
 p {
   text-align: center;
-  font-size: 15px;
+  font-size: 1rem;
+  margin: 0;
 }
 
 a:link {
@@ -41,27 +42,19 @@ a:active {
 
 @media only screen and (min-width: 576px) {
   .containerText {
-    margin: 15px 60px;
-  }
-  h2 {
-    font-size: 26px;
-  }
-  p {
-    text-align: center;
-    font-size: 16px;
+    margin: 10px 45px 35px;
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
   .containerText {
-    margin: 15px 140px;
+    margin: 10px 70px 35px;
   }
-  h2 {
-    font-size: 28px;
-  }
-  p {
-    text-align: center;
-    font-size: 18px;
+}
+
+@media only screen and (min-width: 992px) {
+  .containerText {
+    margin: 10px 125px 35px;
   }
 }
 
@@ -71,15 +64,7 @@ a:active {
     background-color: $predominante;
   }
   .containerText {
-    margin: 15px 280px;
-  }
-  h2 {
-    font-size: 30px;
-    margin: 40px 0 15px 0;
-  }
-  p {
-    text-align: center;
-    font-size: 22px;
+    margin: 10px 460px 35px;
   }
 }
 
@@ -89,6 +74,6 @@ a:active {
     background-color: $predominante;
   }
   .containerText {
-    margin: 15px 515px;
+    margin: 10px 810px 35px;
   }
 }

@@ -41,7 +41,7 @@ export class PokemonsComponent implements OnInit {
 
   // Autocompletar
   public toHighlight: string = '';
-  public control = new FormControl();
+  public control = new FormControl(this.inputKey);
   public pokemonsNames: string[] = [];
   public filteredPokemons!: Observable<string[]>;
 
@@ -50,7 +50,7 @@ export class PokemonsComponent implements OnInit {
   public error: any = {
     status: false,
     message: ''
-  }
+  };
 
   constructor(
     private dataService: PokedataService,
@@ -75,6 +75,7 @@ export class PokemonsComponent implements OnInit {
       sessionStorage.removeItem('pageSize1');
       sessionStorage.removeItem('pageSize2');
       this.inputKey = JSON.parse(sessionStorage.getItem('inputKey')!);
+      this.control = new FormControl(this.inputKey);
       sessionStorage.removeItem('inputKey');
       this.searchPokemon(this.inputKey);
     }
@@ -87,9 +88,9 @@ export class PokemonsComponent implements OnInit {
         // Primera petición para saber el numero total de pokemones
         await this.dataService.getPokemons(this.limit)
           // Total de pokemones se iguala al nuevo limite para proxima solicitud 
-          .then(count => this.limit = count.count)
+          .then(count => this.limit = count.count);
         await this.dataService.getPokemons(this.limit)
-          .then(pokemons => this.pokemons = pokemons.results)
+          .then(pokemons => this.pokemons = pokemons.results);
         this.pokemons.forEach((item: any, i: number) => {
           item.id = i + 1;
           item.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`;
@@ -103,8 +104,8 @@ export class PokemonsComponent implements OnInit {
     } catch (error) {
       console.log('Ha ocurrido un error con el servicio PokeApi:');
       console.log(error);
-      this.error.status = this.error.status = true
-      this.error.message = this.error.message = 'Ha ocurrido un problema con el servicio de PokeApi, inténtelo mas tarde'
+      this.error.status = this.error.status = true;
+      this.error.message = this.error.message = 'Ha ocurrido un problema con el servicio de PokeApi, inténtelo mas tarde';
     }
   }
 
@@ -160,7 +161,7 @@ export class PokemonsComponent implements OnInit {
       // Validacion para evitar multiples busquedas
       if (poke !== this.toHighlight) {
         this.toHighlight = poke;
-        let names: string[] = []
+        let names: string[] = [];
         poke = poke.toLowerCase();
 
         for (let pokemon of this.pokemons) {
