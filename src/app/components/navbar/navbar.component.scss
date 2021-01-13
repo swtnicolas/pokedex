@@ -129,11 +129,11 @@ header {
       font-size: 20px;
       text-decoration: none;
       color: $titulo;
-      font-weight: 200;
+      font-weight: 400;
       &:hover {
         color: $hover !important;
         background-color: $predominante2;
-        font-weight: 400;
+        font-weight: 500;
       }
     }
   }
