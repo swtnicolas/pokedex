@@ -55,7 +55,7 @@ form {
 
   input[type="text"] {
     width: 100%;
-    padding: 0.5rem 1.25rem;
+    padding: 0.5rem 5.5rem;
     margin: 0;
     box-sizing: border-box;
     text-align: center;
@@ -74,7 +74,7 @@ form {
   .fa-backspace {
     position: absolute;
     padding: 0;
-    right: 0.625rem;
+    right: 3rem;
     font-size: 1.625rem;
     color: $predominante;
     margin: 0.1875rem;
@@ -136,8 +136,7 @@ form {
     box-shadow: 0.125rem 0.3125rem #00000028;
     background-color: #ffffff21;
     cursor: pointer;
-    transition: width 0.2s;
-    transition: height 0.2s;
+    transition: 0.2s;
   }
   &-img:hover {
     width: 5.375rem;
@@ -158,7 +157,7 @@ form {
   background-color: #b126267e;
   margin: 0;
   padding: 0.25rem 0;
-  border-radius: 2%;
+  border-radius: 5px;
 
   p {
     margin: 0;
@@ -174,7 +173,7 @@ form {
   background-color: #266eb17e;
   margin: 0;
   padding: 0.25rem 0;
-  border-radius: 2%;
+  border-radius: 5px;
 
   p {
     margin: 0;

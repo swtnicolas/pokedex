@@ -5,7 +5,7 @@
       <input
         type="text"
         name="search"
-        placeholder="Buscar por Nombre o ID"
+        placeholder="Buscar Nombre/ID"
         (keyup.enter)="
           searchPokemon(searchText.value); trigger.closePanel(); resetpage()
         "
@@ -32,7 +32,6 @@
       ></i>
       <i
         class="fas fa-search"
-        *ngIf="this.inputKey.length == 0"
         (click)="searchPokemon(searchText.value); resetpage()"
       >
       </i>
