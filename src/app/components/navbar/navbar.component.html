@@ -20,6 +20,16 @@
             >Sobre&nbsp;Pokédex</a
           >
         </li>
+        <li>
+          <mat-slide-toggle
+            class="sidenav1-darkMode"
+            color="warn"
+            [checked]="darkMode"
+            (click)="toggleTheme()"
+          >
+            Modo Oscuro
+          </mat-slide-toggle>
+        </li>
       </ul>
     </div>
     <div class="sidenav2">
@@ -38,7 +48,25 @@
             >Sobre&nbsp;Pokédex</a
           >
         </li>
+        <li>
+          <mat-slide-toggle
+            class="sidenav2-darkMode"
+            color="warn"
+            [checked]="darkMode"
+            (click)="toggleTheme()"
+          >
+            Modo Oscuro
+          </mat-slide-toggle>
+        </li>
       </ul>
     </div>
   </nav>
 </header>
+
+<!-- <a
+aria-label="Angular on twitter"
+title="Dark theme"
+(click)="toggleTheme()"
+>
+DARK
+</a> -->

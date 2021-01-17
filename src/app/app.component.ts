@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { UiStyleToggleService } from './services/ui-style-toggle.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pokedex';
+
+  // constructor(private uiStyleToggleService: UiStyleToggleService) {
+  // }
+  // toggleTheme() {
+  //   this.uiStyleToggleService.toggle();
+  // }
 }

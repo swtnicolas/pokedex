@@ -1,13 +1,8 @@
-$predominante: #b12626;
-$predominante2: #a12626;
-$titulo: #ffffff;
-$hover: #979797;
-
 header {
   z-index: 5;
   display: grid;
   grid-template-columns: 2.9rem 2.5rem 1fr;
-  background-color: $predominante;
+  background-color: var(--primary);
   #logo {
     &-title {
       padding: 0.7rem;
@@ -15,7 +10,7 @@ header {
       font-family: Pocket-Monk;
       font-size: 1.8125rem;
       font-weight: 100;
-      color: $titulo;
+      color: var(--title);
     }
     &-img {
       width: 2.1875rem;
@@ -26,12 +21,13 @@ header {
   .fa-bars {
     padding: 0.2rem 0;
     text-align: right;
-    color: $titulo;
+    color: var(--title);
     font-size: 2rem;
     margin-right: 5px;
     cursor: pointer;
+    transition: color 0.1s;
     &:hover {
-      color: $hover;
+      color: var(--title-hover);
     }
   }
 }
@@ -43,20 +39,21 @@ header {
   z-index: 10;
   top: 0;
   left: 0;
-  background-color: $predominante;
+  background-color: var(--primary);
   overflow-x: hidden;
   padding-top: 60px;
-  transition: 0.2s;
+  transition: width 0.2s;
   &-closebtn {
-    color: $titulo;
+    color: var(--title);
     position: absolute;
     top: 15px;
     right: 25px;
     font-size: 40px;
     cursor: pointer;
+    transition: color 0.1s;
   }
   &-closebtn:hover {
-    color: $hover;
+    color: var(--title-hover);
   }
   ul {
     list-style-type: none;
@@ -71,13 +68,19 @@ header {
     font-size: 20px;
     text-decoration: none;
     outline: none;
-    color: $titulo;
+    color: var(--title);
     font-weight: 200;
+    transition: background-color 0.1s;
     &:hover {
-      color: $hover !important;
-      background-color: $predominante2;
-      font-weight: 400;
+      background-color: var(--primary-hover);
     }
+  }
+  &-darkMode {
+    position: absolute;
+    bottom: 30px;
+    color: var(--title);
+    font-size: 17px;
+    margin-left: 20px;
   }
 }
 
@@ -86,7 +89,7 @@ header {
 }
 
 .active .sidenav1-a {
-  color: $titulo;
+  color: var(--title);
   font-weight: 600;
 }
 
@@ -109,7 +112,7 @@ header {
     width: 100%;
     height: 98%;
     z-index: 10;
-    background-color: $predominante;
+    background-color: var(--primary);
     overflow-x: hidden;
     ul {
       display: flex;
@@ -128,18 +131,24 @@ header {
       padding: 0.7rem 0;
       font-size: 20px;
       text-decoration: none;
-      color: $titulo;
-      font-weight: 400;
+      color: var(--title);
+      font-weight: 300;
+      transition: background-color 0.1s;
       &:hover {
-        color: $hover !important;
-        background-color: $predominante2;
-        font-weight: 500;
+        background-color: var(--primary-hover);
       }
+    }
+    &-darkMode {
+      position: absolute;
+      right: 12rem;
+      top: 12px;
+      color: var(--title);
+      font-size: 18px;
     }
   }
 
   .active .sidenav2-a {
-    color: $titulo;
+    color: var(--title);
     font-weight: 600;
   }
 }

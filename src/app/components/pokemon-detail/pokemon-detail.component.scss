@@ -1,6 +1,3 @@
-$titulo: #ffffff;
-$hover: #979797;
-
 section {
   min-height: 100vh;
   display: grid;
@@ -11,11 +8,16 @@ section {
 hr {
   border: 0;
   height: 0.0625rem;
-  background-image: linear-gradient(to right, #00000000, #000000bf, #00000000);
+  background-image: linear-gradient(
+    to right,
+    #00000000,
+    var(--text),
+    #00000000
+  );
 }
 
 .loading {
-  background-color: #ffffff;
+  background-color: var(--background);
   background-image: url("^./assets/img/bg-card-top.svg"),
     url("^./assets/img/bg-card-bottom.svg");
   background-repeat: no-repeat, no-repeat;
@@ -46,20 +48,27 @@ hr {
 .fa-chevron-left {
   position: fixed;
   z-index: 60;
-  color: $titulo;
+  color: var(--title);
   text-shadow: -0.0625rem 0 0.6875rem rgba(0, 0, 0, 1);
   font-size: 1.6875rem;
   top: 1.25rem;
   left: 1.25rem;
   cursor: pointer;
+  transition: color 0.2s;
   &:hover {
-    color: $hover;
+    color: var(--title-hover);
   }
 }
 
 .card {
-  background: #ffffff;
-  background: linear-gradient(180deg, #ffffff00 20%, #ffffff 26%, #c3c3c3 100%);
+  color: var(--text);
+  background: var(--card-detail-gradient2);
+  background: linear-gradient(
+    180deg,
+    var(--card-detail-gradient1) 20%,
+    var(--card-detail-gradient2) 26%,
+    var(--card-detail-gradient3) 100%
+  );
   border-radius: 30px;
   margin: 30px 0;
   &-img {
@@ -88,21 +97,21 @@ hr {
     font-size: 0.75rem;
     text-align: center;
     margin: 0;
-    text-shadow: 0.0625rem 0.0625rem 0.25rem #ffc400;
+    text-shadow: 0.0625rem 0.0625rem 0.25rem var(--card-detail-legendary);
   }
   &-isMythical {
     font-weight: 500;
     font-size: 0.75rem;
     text-align: center;
     margin: 0;
-    text-shadow: 0.0625rem 0.0625rem 0.25rem #83838393;
+    text-shadow: 0.0625rem 0.0625rem 0.25rem var(--card-detail-mythical);
   }
   &-isBaby {
     font-weight: 500;
     font-size: 0.75rem;
     text-align: center;
     margin: 0;
-    text-shadow: 0.0625rem 0.0625rem 0.25rem #0051ffa1;
+    text-shadow: 0.0625rem 0.0625rem 0.25rem var(--card-detail-baby);
   }
   &-core {
     margin: 0.625rem 0 0.625rem;
@@ -203,10 +212,10 @@ hr {
         height: 4.375rem;
         width: 4.375rem;
         border-radius: 50%;
-        box-shadow: 0.125rem 0.1875rem #00000028;
+        box-shadow: 0.125rem 0.1875rem var(--card-detail-evolutionShadow);
         cursor: pointer;
         opacity: 0.7;
-        transition: 0.2s;
+        transition: opacity 0.2s;
       }
       &-img:hover {
         opacity: 1;
@@ -235,10 +244,10 @@ hr {
         height: 4.375rem;
         width: 4.375rem;
         border-radius: 50%;
-        box-shadow: 0.125rem 0.1875rem #00000028;
+        box-shadow: 0.125rem 0.1875rem var(--card-detail-evolutionShadow);
         cursor: pointer;
         opacity: 0.7;
-        transition: 0.2s;
+        transition: opacity 0.2s;
       }
       &-img:hover {
         opacity: 1;
@@ -269,10 +278,10 @@ hr {
         height: 4.375rem;
         width: 4.375rem;
         border-radius: 50%;
-        box-shadow: 0.125rem 0.1875rem #00000028;
+        box-shadow: 0.125rem 0.1875rem var(--card-detail-evolutionShadow);
         cursor: pointer;
         opacity: 0.7;
-        transition: 0.2s;
+        transition: opacity 0.2s;
       }
       &-img:hover {
         opacity: 1;

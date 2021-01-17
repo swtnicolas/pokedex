@@ -1,15 +1,13 @@
-$predominante: #b12626;
-$texto: #ffffff;
-$hover2: #d61e1e;
-
 .home {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  background-color: var(--background);
 }
 
 h1 {
   font-family: Pocket-Monk;
+  color: var(--text);
   font-weight: 100;
   font-size: 38px;
   text-align: center;
@@ -33,18 +31,20 @@ button {
   padding: 10px;
   font-size: 15px;
   display: block;
-  color: $texto;
-  background-color: $predominante;
+  color: var(--title);
+  background-color: var(--primary);
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 button:hover {
-  background-color: $hover2;
+  background-color: var(--primary-hover);
 }
 
 p {
+  color: var(--text);
   font-size: 15px;
   text-align: center;
   margin: 16px 20px 19px;
@@ -76,7 +76,7 @@ p {
 @media only screen and (min-width: 1360px) {
   app-navbar {
     padding: 0 56px;
-    background-color: $predominante;
+    background-color: var(--primary);
   }
   p {
     font-size: 20px;
@@ -86,7 +86,6 @@ p {
 @media only screen and (min-width: 1900px) {
   app-navbar {
     padding: 0 120px;
-    background-color: $predominante;
   }
   h1 {
     font-size: 65px;

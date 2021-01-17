@@ -2,7 +2,7 @@ import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { PokedataService } from 'src/app/services/pokedata.service';
-import { ColorType } from 'src/interfaces';
+import { ColorTypeLigth, ColorTypeDark } from 'src/interfaces';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -10,6 +10,8 @@ import { ColorType } from 'src/interfaces';
   styleUrls: ['./pokemon-detail.component.scss']
 })
 export class PokemonDetailComponent implements OnInit, AfterViewChecked {
+
+  private theme: string = 'ligth';
 
   public pokemonDetail: any;
   public pokemonSpecies: any;
@@ -37,6 +39,9 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
   ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('theme')) {
+      this.theme = (localStorage.getItem('theme')!);
+    }
     this.loading = true;
     this.getPokemonsSpecies();
     this.getPokemonDetail();
@@ -133,18 +138,33 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
 
   getTypeColor(type: string): any {
     if (type) {
-      const Color: any = ColorType;
-      this.contador += 1;
-      if (this.contador === 1) {
-        this.color1 = Color[type];
+      if (this.theme === 'dark') {
+        const ColorDark: any = ColorTypeDark;
+        this.contador += 1;
+        if (this.contador === 1) {
+          this.color1 = ColorDark[type];
+        }
+        if (this.contador === 2) {
+          this.color2 = ColorDark[type];
+          this.backgroundColor1 = this.color1;
+          this.backgroundColor2 = `linear-gradient(135deg, #${this.color1} 20%, #${this.color2} 80%)`;
+          this.cdr.detectChanges();
+        }
+        return '#' + ColorDark[type];
+      } else {
+        const ColorLigth: any = ColorTypeLigth;
+        this.contador += 1;
+        if (this.contador === 1) {
+          this.color1 = ColorLigth[type];
+        }
+        if (this.contador === 2) {
+          this.color2 = ColorLigth[type];
+          this.backgroundColor1 = this.color1;
+          this.backgroundColor2 = `linear-gradient(135deg, #${this.color1} 20%, #${this.color2} 80%)`;
+          this.cdr.detectChanges();
+        }
+        return '#' + ColorLigth[type];
       }
-      if (this.contador === 2) {
-        this.color2 = Color[type];
-        this.backgroundColor1 = this.color1;
-        this.backgroundColor2 = `linear-gradient(135deg, #${this.color1} 20%, #${this.color2} 80%)`;
-        this.cdr.detectChanges();
-      }
-      return '#' + Color[type];
     }
   }
 }

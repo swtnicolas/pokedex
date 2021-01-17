@@ -1,4 +1,4 @@
-export enum ColorType {
+export enum ColorTypeLigth {
   normal = 'a4acaf',
   fighting = 'd56723',
   flying = '90e7ff',
@@ -15,6 +15,27 @@ export enum ColorType {
   psychic = 'f366b9',
   ice = '51c4e7',
   dragon = 'dd533a',
-  dark = '616161',
+  dark = '707070',
   fairy = 'febaea'
+}
+
+export enum ColorTypeDark {
+  normal = '3f4244',
+  fighting = '692800',
+  flying = '00546b',
+  poison = '75248b',
+  ground = '4b4219',
+  rock = '423600',
+  bug = '213809',
+  ghost = '301857',
+  steel = '1c1c1f',
+  fire = '793b0f',
+  water = '07263d',
+  grass = '324e07',
+  electric = '5a4f07',
+  psychic = '961c63',
+  ice = '00394b',
+  dragon = '7a1200',
+  dark = '1f1f1f',
+  fairy = '55334a'
 }

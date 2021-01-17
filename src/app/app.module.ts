@@ -9,7 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ImgPreloadDirective } from './directive/img-preload.directive';
-import { CustomPaginator } from '../CustomPaginatorConfiguration';
+import { CustomMatPaginatorIntl } from '../CustomPaginatorConfiguration';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,6 +21,23 @@ import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-deta
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { HighlightPipe } from './pipes/highlight.pipe';
+
+
+
+import { APP_INITIALIZER } from '@angular/core';
+import { UiStyleToggleService } from "./services/ui-style-toggle.service";
+import { LocalStorageService } from "./services/local-storage.service";
+
+export function themeFactory(themeService: UiStyleToggleService) {
+  return () => themeService.setThemeOnStart();
+}
+
+
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,10 +59,14 @@ import { HighlightPipe } from './pipes/highlight.pipe';
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSlideToggleModule
   ],
   providers: [
-    { provide: MatPaginatorIntl, useValue: CustomPaginator() }
+    UiStyleToggleService,
+    LocalStorageService,
+    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },
+    { provide: APP_INITIALIZER, useFactory: themeFactory, deps: [UiStyleToggleService], multi: true }
   ],
   bootstrap: [AppComponent]
 })
