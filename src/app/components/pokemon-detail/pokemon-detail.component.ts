@@ -21,9 +21,8 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
   public evolutionChain1: any[] = [];
   public evolutionChain2: any[] = [];
   public evolutionChain3: any[] = [];
-
   private color1: string = 'ffffff';
-  private color2: string = '707070';
+  private color2: string = 'ffffff';
   public backgroundColor1: string = this.color1;
   public backgroundColor2: string = `linear-gradient(180deg, #${this.color1} 34%, #${this.color2} 100%)`;
   private contador: number = 0;
@@ -41,6 +40,8 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
     if (localStorage.getItem('theme')) {
       this.theme = (localStorage.getItem('theme')!);
+      this.color1 = '1b1b1b';
+      this.color2 = '1b1b1b';
     }
     this.loading = true;
     this.getPokemonsSpecies();

@@ -26,7 +26,8 @@ section {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #ffffff;
+  color: var(--text);
+  background-color: var(--background);
   position: fixed;
   top: 0;
   left: 0;
