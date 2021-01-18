@@ -1,10 +1,7 @@
 section {
-  min-height: 100vh;
-  background-color: var(--background);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto 1fr auto;
-  row-gap: 0.2rem;
+  row-gap: 0.3rem;
   padding: 0 0.125rem;
 }
 
@@ -121,5 +118,17 @@ form {
   p {
     margin: 0;
     padding: 0.3125rem;
+  }
+}
+
+@media only screen and (min-width: 1360px) {
+  section {
+    margin: 0 10px;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  section {
+    margin: 0 120px;
   }
 }

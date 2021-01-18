@@ -13,6 +13,12 @@ html {
   font-size: 16px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+app-root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: var(--background);
+}
 
 *,
 *:before,
@@ -152,5 +158,26 @@ html {
   .mat-paginator,
   .mat-paginator-page-size .mat-select-trigger {
     font-size: 16px;
+  }
+}
+@media only screen and (min-width: 1360px) {
+  app-header {
+    padding: 0 10px;
+    background-color: var(--primary);
+  }
+  app-footer {
+    padding: 0 10px;
+    background-color: var(--primary);
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  app-header {
+    padding: 0 120px;
+    background-color: var(--primary);
+  }
+  app-footer {
+    padding: 0 120px;
+    background-color: var(--primary);
   }
 }

@@ -5,9 +5,6 @@ import { HomeComponent } from './pages/home.component';
 const routes: Routes = [
   {
     path: '',
-    // children: [
-    //   { path: '**', redirectTo: '' }
-    // ],
     component: HomeComponent
   }
 ];

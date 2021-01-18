@@ -58,7 +58,7 @@ export class PokemonsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.loading = false;
     this.getPokemon();
     // Si existen los datos del paginador en sessionStorage, se recuperan y se limpian 
     if (sessionStorage.getItem('pageSize1') && sessionStorage.getItem('pageSize2') && sessionStorage.getItem('pageIndex1') && sessionStorage.getItem('pageIndex2') && sessionStorage.getItem('inputKey')) {

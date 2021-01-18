@@ -3,6 +3,8 @@ article {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.1875rem;
   .cards {
+    display: grid;
+    grid-template-rows: auto auto 6rem;
     background: var(--primary);
     background: linear-gradient(
       180deg,
@@ -71,21 +73,13 @@ article {
 }
 
 @media only screen and (min-width: 1360px) {
-  // app-navbar {
-  //   padding: 0 56px;
-  //   background-color: var(--primary);
-  // }
   article {
     grid-template-columns: repeat(10, 1fr);
   }
 }
 
 @media only screen and (min-width: 1900px) {
-  // app-navbar {
-  //   padding: 0 120px;
-  // }
   article {
     grid-template-columns: repeat(12, 1fr);
-    margin: 0 120px;
   }
 }
