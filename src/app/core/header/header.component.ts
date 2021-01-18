@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UiStyleToggleService } from 'src/app/services/ui-style-toggle.service';
+import { UiStyleToggleService } from 'src/app/core/services/configStyles/ui-style-toggle.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   private theme: string = 'ligth';
   public darkMode: boolean = false;

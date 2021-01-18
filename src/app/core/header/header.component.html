@@ -10,13 +10,23 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="sidenav1-a" [routerLink]="['']">Inicio</a>
+          <a class="sidenav1-a" (click)="closeNav()" [routerLink]="['']"
+            >Inicio</a
+          >
         </li>
         <li routerLinkActive="active">
-          <a class="sidenav1-a" [routerLink]="['/pokemones']">Pokémones</a>
+          <a
+            class="sidenav1-a"
+            (click)="closeNav()"
+            [routerLink]="['/pokemones']"
+            >Pokémones</a
+          >
         </li>
         <li routerLinkActive="active">
-          <a class="sidenav1-a" [routerLink]="['/sobre-pokedex']"
+          <a
+            class="sidenav1-a"
+            (click)="closeNav()"
+            [routerLink]="['/sobre-pokedex']"
             >Sobre&nbsp;Pokédex</a
           >
         </li>

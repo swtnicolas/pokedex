@@ -1,0 +1,13 @@
+<strong>{{ pokemon.name | titlecase }}</strong>
+<br />
+<p>N.º{{ pokemon.id | number: "3.0" }}</p>
+<img
+  class="card-evolution-twoEvolutionsSimple-img"
+  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+    pokemon.id
+  }}.png"
+  alt="{{ pokemon.name | titlecase }}"
+  title="{{ pokemon.name | titlecase }}"
+  appImgPreload="./assets/img/0.png"
+  (click)="onPokemon(pokemon.id)"
+/>

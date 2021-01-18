@@ -1,8 +1,8 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavigationService } from 'src/app/services/navigation.service';
-import { PokedataService } from 'src/app/services/pokedata.service';
-import { ColorTypeLigth, ColorTypeDark } from 'src/interfaces';
+import { NavigationService } from 'src/app/core/services/navigation/navigation.service';
+import { PokedataService } from 'src/app/core/services/pokeApi/pokedata.service';
+import { ColorTypeLigth, ColorTypeDark } from 'src/app/shared/interfaces/typePokemons';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -38,6 +38,7 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
   ) { }
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     if (localStorage.getItem('theme')) {
       this.theme = (localStorage.getItem('theme')!);
       this.color1 = '1b1b1b';
@@ -131,9 +132,9 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
     this.navigation.back();
   }
 
-  onPokemon(pokemon: any) {
-    if (pokemon.id !== this.pokemonDetail.id) {
-      this.router.navigate(['/pokemon/', pokemon.id]);
+  onPokemon(id: number) {
+    if (id !== this.pokemonDetail.id) {
+      this.router.navigate(['/pokemones/', id]);
     }
   }
 

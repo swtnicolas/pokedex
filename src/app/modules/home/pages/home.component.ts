@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PokedataService } from 'src/app/services/pokedata.service';
+import { PokedataService } from 'src/app/core/services/pokeApi/pokedata.service';
 
 @Component({
   selector: 'app-home',

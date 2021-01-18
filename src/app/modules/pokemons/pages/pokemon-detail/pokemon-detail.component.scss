@@ -202,24 +202,6 @@ hr {
         grid-template-columns: auto auto auto auto;
         row-gap: 0.625rem;
       }
-      p {
-        margin: 0;
-      }
-      &-img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        height: 4.375rem;
-        width: 4.375rem;
-        border-radius: 50%;
-        box-shadow: 0.125rem 0.1875rem var(--card-detail-evolutionShadow);
-        cursor: pointer;
-        opacity: 0.7;
-        transition: opacity 0.2s;
-      }
-      &-img:hover {
-        opacity: 1;
-      }
       .fa-chevron-down {
         font-size: 0.875rem;
         position: relative;
@@ -234,24 +216,6 @@ hr {
       width: 18.75rem;
       text-align: center;
       font-size: 0.875rem;
-      p {
-        margin: 0;
-      }
-      &-img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        height: 4.375rem;
-        width: 4.375rem;
-        border-radius: 50%;
-        box-shadow: 0.125rem 0.1875rem var(--card-detail-evolutionShadow);
-        cursor: pointer;
-        opacity: 0.7;
-        transition: opacity 0.2s;
-      }
-      &-img:hover {
-        opacity: 1;
-      }
       .fa-chevron-right {
         font-size: 0.875rem;
         position: relative;
@@ -268,25 +232,6 @@ hr {
       width: 18.75rem;
       text-align: center;
       font-size: 0.875rem;
-      p {
-        margin: 0;
-      }
-      &-img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        height: 4.375rem;
-        width: 4.375rem;
-        border-radius: 50%;
-        box-shadow: 0.125rem 0.1875rem var(--card-detail-evolutionShadow);
-        cursor: pointer;
-        opacity: 0.7;
-        transition: opacity 0.2s;
-      }
-      &-img:hover {
-        opacity: 1;
-      }
-
       .fa-chevron-right {
         font-size: 0.875rem;
         position: relative;

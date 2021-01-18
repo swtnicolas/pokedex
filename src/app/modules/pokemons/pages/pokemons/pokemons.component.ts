@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PokedataService } from 'src/app/services/pokedata.service';
+import { PokedataService } from 'src/app/core/services/pokeApi/pokedata.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
@@ -70,13 +70,13 @@ export class PokemonsComponent implements OnInit {
       this.highValue1 = this.lowValue1 + this.pageSize1;
       this.lowValue2 = this.pageIndex2 * this.pageSize2;
       this.highValue2 = this.lowValue2 + this.pageSize2;
-      sessionStorage.removeItem('pageIndex1');
-      sessionStorage.removeItem('pageIndex2');
-      sessionStorage.removeItem('pageSize1');
-      sessionStorage.removeItem('pageSize2');
+      // sessionStorage.removeItem('pageIndex1');
+      // sessionStorage.removeItem('pageIndex2');
+      // sessionStorage.removeItem('pageSize1');
+      // sessionStorage.removeItem('pageSize2');
       this.inputKey = JSON.parse(sessionStorage.getItem('inputKey')!);
       this.control = new FormControl(this.inputKey);
-      sessionStorage.removeItem('inputKey');
+      // sessionStorage.removeItem('inputKey');
       this.searchPokemon(this.inputKey);
     }
   }
@@ -116,11 +116,21 @@ export class PokemonsComponent implements OnInit {
       this.pageIndex1 = event.pageIndex;
       this.lowValue1 = this.pageIndex1 * this.pageSize1;
       this.highValue1 = this.lowValue1 + this.pageSize1;
+      sessionStorage.setItem('inputKey', JSON.stringify(this.inputKey));
+      sessionStorage.setItem('pageSize1', JSON.stringify(this.pageSize1));
+      sessionStorage.setItem('pageSize2', JSON.stringify(this.pageSize2));
+      sessionStorage.setItem('pageIndex1', JSON.stringify(this.pageIndex1));
+      sessionStorage.setItem('pageIndex2', JSON.stringify(this.pageIndex2));
     } else {
       this.pageSize2 = event.pageSize;
       this.pageIndex2 = event.pageIndex;
       this.lowValue2 = this.pageIndex2 * this.pageSize2;
       this.highValue2 = this.lowValue2 + this.pageSize2;
+      sessionStorage.setItem('inputKey', JSON.stringify(this.inputKey));
+      sessionStorage.setItem('pageSize1', JSON.stringify(this.pageSize1));
+      sessionStorage.setItem('pageSize2', JSON.stringify(this.pageSize2));
+      sessionStorage.setItem('pageIndex1', JSON.stringify(this.pageIndex1));
+      sessionStorage.setItem('pageIndex2', JSON.stringify(this.pageIndex2));
     }
   }
 
@@ -204,19 +214,24 @@ export class PokemonsComponent implements OnInit {
     this.pageIndex2 = 0;
     this.lowValue2 = this.pageIndex2 * this.pageSize2;
     this.highValue2 = this.lowValue2 + this.pageSize2;
-  }
-
-  imgLoading(): void {
-    this.loading = false;
-  }
-
-  // Se guardan los datos del paginador y se redirecciona al pokemon seleccionado. 
-  onPokemon(pokemon: any) {
     sessionStorage.setItem('inputKey', JSON.stringify(this.inputKey));
     sessionStorage.setItem('pageSize1', JSON.stringify(this.pageSize1));
     sessionStorage.setItem('pageSize2', JSON.stringify(this.pageSize2));
     sessionStorage.setItem('pageIndex1', JSON.stringify(this.pageIndex1));
     sessionStorage.setItem('pageIndex2', JSON.stringify(this.pageIndex2));
-    this.router.navigate(['/pokemon', pokemon.id]);
+  }
+
+  imgLoading(loading: boolean): void {
+    this.loading = loading;
+  }
+
+  // Se guardan los datos del paginador y se redirecciona al pokemon seleccionado. 
+  onPokemon(id: number) {
+    sessionStorage.setItem('inputKey', JSON.stringify(this.inputKey));
+    sessionStorage.setItem('pageSize1', JSON.stringify(this.pageSize1));
+    sessionStorage.setItem('pageSize2', JSON.stringify(this.pageSize2));
+    sessionStorage.setItem('pageIndex1', JSON.stringify(this.pageIndex1));
+    sessionStorage.setItem('pageIndex2', JSON.stringify(this.pageIndex2));
+    this.router.navigate(['/pokemones/', id]);
   }
 }
