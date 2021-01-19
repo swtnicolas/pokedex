@@ -35,8 +35,15 @@
     </i>
   </form>
   <div class="bgLoading" *ngIf="loading">
-    <mat-spinner strokeWidth="10" diameter="150" color="warn"></mat-spinner>
-    <p class="bgLoading-text">&nbsp;{{ this.error.message }}&nbsp;</p>
+    <mat-spinner
+      *ngIf="this.error.status === false"
+      strokeWidth="10"
+      diameter="150"
+      color="warn"
+    ></mat-spinner>
+    <div *ngIf="this.error.status === true">
+      <p class="bgLoading-text">{{ this.error.message }}</p>
+    </div>
   </div>
   <ng-container
     *ngIf="this.inputKey.length !== 0; then searchList; else allList"
@@ -49,12 +56,11 @@
       [lowValue]="lowValue1"
       [highValue]="highValue1"
       (id)="onPokemon($event)"
-      (loading)="imgLoading($event)"
     ></app-list>
     <div class="paginator animatedFast fadeIn">
       <mat-paginator
         color="warn"
-        [length]="limit"
+        [length]="totalPokemons"
         [pageIndex]="pageIndex1"
         [pageSize]="pageSize1"
         (page)="getPaginatorData($event)"
@@ -94,7 +100,6 @@
       [lowValue]="lowValue2"
       [highValue]="highValue2"
       (id)="onPokemon($event)"
-      (loading)="imgLoading($event)"
     ></app-list>
     <div class="paginator animatedFast fadeIn">
       <mat-paginator

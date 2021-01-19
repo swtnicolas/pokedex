@@ -1,12 +1,11 @@
+@font-face {
+  font-family: Pocket-Monk;
+  src: url("^./assets/fonts/Pocket-Monk.otf") format("opentype");
+  font-display: swap;
+}
 @import "~normalize.css";
 @import "/src/app/styles/colors";
 @import "/src/app/styles/theme";
-
-@font-face {
-  font-family: Pocket-Monk;
-  src: url("^./assets/fonts/Pocket-Monk.otf");
-  font-display: swap;
-}
 
 html {
   box-sizing: border-box;
@@ -18,6 +17,14 @@ app-root {
   display: grid;
   grid-template-rows: auto 1fr auto;
   background-color: var(--background);
+}
+app-header {
+  background-color: var(--primary);
+  z-index: 100;
+}
+app-footer {
+  background-color: var(--primary);
+  z-index: 90;
 }
 
 *,
@@ -163,21 +170,17 @@ app-root {
 @media only screen and (min-width: 1360px) {
   app-header {
     padding: 0 10px;
-    background-color: var(--primary);
   }
   app-footer {
     padding: 0 10px;
-    background-color: var(--primary);
   }
 }
 
 @media only screen and (min-width: 1900px) {
   app-header {
     padding: 0 120px;
-    background-color: var(--primary);
   }
   app-footer {
     padding: 0 120px;
-    background-color: var(--primary);
   }
 }

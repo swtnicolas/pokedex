@@ -19,7 +19,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    // Configuración de redirección "{ onSameUrlNavigation: 'reload' }"
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
   ],
   exports: [
     RouterModule

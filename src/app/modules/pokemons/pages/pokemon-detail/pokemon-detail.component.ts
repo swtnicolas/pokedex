@@ -1,6 +1,5 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavigationService } from 'src/app/core/services/navigation/navigation.service';
 import { PokedataService } from 'src/app/core/services/pokeApi/pokedata.service';
 import { ColorTypeLigth, ColorTypeDark } from 'src/app/shared/interfaces/typePokemons';
 
@@ -33,18 +32,18 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private dataService: PokedataService,
-    private navigation: NavigationService,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     window.scroll(0, 0);
-    if (localStorage.getItem('theme')) {
-      this.theme = (localStorage.getItem('theme')!);
+    this.theme = (localStorage.getItem('theme')!);
+    if (this.theme === 'dark') {
       this.color1 = '1b1b1b';
       this.color2 = '1b1b1b';
+      this.backgroundColor1 = this.color1;
+      this.backgroundColor2 = `linear-gradient(180deg, #${this.color1} 34%, #${this.color2} 100%)`;
     }
-    this.loading = true;
     this.getPokemonsSpecies();
     this.getPokemonDetail();
     // Redirección de las evoluciones, configuración en "app-routing.module.ts"
@@ -79,15 +78,15 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
       this.pokemonSpecies.capture_rate = ((this.pokemonSpecies.capture_rate * 100) / 255);
       this.pokemonSpecies.generation.name = this.pokemonSpecies.generation.name.slice(11, 20);
       // Consigue las evoluciones por el id extraido de la url
-      this.getEvolutionChain(this.pokemonSpecies.evolution_chain.url.slice(41, 47));
+      this.getEvolutionChain(this.pokemonSpecies.evolution_chain.url);
     } catch (error) {
       this.router.navigateByUrl('/pokemones');
     }
   }
 
-  async getEvolutionChain(idx: number) {
+  async getEvolutionChain(url: string) {
     try {
-      await this.dataService.getEvolutionChain(idx)
+      await this.dataService.getEvolutionChain(url)
         .then(evolutionChain => this.evolutionChain = evolutionChain);
       let evoData = this.evolutionChain.chain;
       let numberOfEvolutions = evoData.evolves_to.length;
@@ -129,12 +128,12 @@ export class PokemonDetailComponent implements OnInit, AfterViewChecked {
   }
 
   back(): void {
-    this.navigation.back();
+    this.router.navigateByUrl('/pokemones');
   }
 
   onPokemon(id: number) {
     if (id !== this.pokemonDetail.id) {
-      this.router.navigate(['/pokemones/', id]);
+      this.router.navigate(['/pokemones', id]);
     }
   }
 

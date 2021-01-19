@@ -129,12 +129,10 @@ $colors: (
     $card-light,
     $card-dark,
   ),
-  // card-details
-  --card-detail-gradient1:
-    (
-      $card-detail-gradient1-light,
-      $card-detail-gradient1-dark,
-    ),
+  --card-detail-gradient1: (
+    $card-detail-gradient1-light,
+    $card-detail-gradient1-dark,
+  ),
   --card-detail-gradient2: (
     $card-detail-gradient2-light,
     $card-detail-gradient2-dark,
@@ -159,10 +157,8 @@ $colors: (
     $card-detail-baby-light,
     $card-detail-baby-dark,
   ),
-  // footer
-  --footer:
-    (
-      $footer-light,
-      $footer-dark,
-    ),
+  --footer: (
+    $footer-light,
+    $footer-dark,
+  ),
 );

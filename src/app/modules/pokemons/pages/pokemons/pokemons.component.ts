@@ -5,15 +5,16 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { ErrorPokeApi } from 'src/app/shared/interfaces/pokeApi';
 @Component({
   selector: 'app-pokemons',
   templateUrl: './pokemons.component.html',
   styleUrls: ['./pokemons.component.scss']
-
 })
+
 export class PokemonsComponent implements OnInit {
 
-  public limit: number = 0;
+  public totalPokemons: number = 0;
   public pokemons: any[] = [];
   public pokemons2: any[] = [];
 
@@ -47,9 +48,9 @@ export class PokemonsComponent implements OnInit {
 
   // Progress Spinner
   public loading: boolean = true;
-  public error: any = {
-    status: false,
-    message: ''
+  public error: ErrorPokeApi = {
+    "status": false,
+    "message": 'Ha ocurrido un problema con el servicio de PokeApi, inténtelo mas tarde'
   };
 
   constructor(
@@ -58,7 +59,6 @@ export class PokemonsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loading = false;
     this.getPokemon();
     // Si existen los datos del paginador en sessionStorage, se recuperan y se limpian 
     if (sessionStorage.getItem('pageSize1') && sessionStorage.getItem('pageSize2') && sessionStorage.getItem('pageIndex1') && sessionStorage.getItem('pageIndex2') && sessionStorage.getItem('inputKey')) {
@@ -70,26 +70,28 @@ export class PokemonsComponent implements OnInit {
       this.highValue1 = this.lowValue1 + this.pageSize1;
       this.lowValue2 = this.pageIndex2 * this.pageSize2;
       this.highValue2 = this.lowValue2 + this.pageSize2;
-      // sessionStorage.removeItem('pageIndex1');
-      // sessionStorage.removeItem('pageIndex2');
-      // sessionStorage.removeItem('pageSize1');
-      // sessionStorage.removeItem('pageSize2');
       this.inputKey = JSON.parse(sessionStorage.getItem('inputKey')!);
       this.control = new FormControl(this.inputKey);
-      // sessionStorage.removeItem('inputKey');
       this.searchPokemon(this.inputKey);
     }
   }
 
   async getPokemon() {
     try {
+      // Si el total no esta almacenado en el sessionStorage
+      if (!sessionStorage.getItem('totalPokemons')) {
+        // Primera petición para total de pokemones
+        await this.dataService.getPokemons(this.totalPokemons)
+          .then(count => this.totalPokemons = count.count);
+        sessionStorage.setItem('totalPokemons', JSON.stringify(this.totalPokemons));
+      } else {
+        // Si esta almacenado en el sessionStorage, se recupera
+        this.totalPokemons = JSON.parse(sessionStorage.getItem('totalPokemons')!);
+      }
+      // Si la lista no esta almacenada en el sessionStorage
       if (!sessionStorage.getItem('PokemonList')) {
-        // Si la lista no esta almacenada en el localStorage, se hacen las peticiones HTTP
-        // Primera petición para saber el numero total de pokemones
-        await this.dataService.getPokemons(this.limit)
-          // Total de pokemones se iguala al nuevo limite para proxima solicitud 
-          .then(count => this.limit = count.count);
-        await this.dataService.getPokemons(this.limit)
+        // Petición para lista de pokemones
+        await this.dataService.getPokemons(this.totalPokemons)
           .then(pokemons => this.pokemons = pokemons.results);
         this.pokemons.forEach((item: any, i: number) => {
           item.id = i + 1;
@@ -97,15 +99,14 @@ export class PokemonsComponent implements OnInit {
         });
         sessionStorage.setItem('PokemonList', JSON.stringify(this.pokemons));
       } else {
-        // Si la lista esta almacenada en el localStorage, se recupera
         this.pokemons = JSON.parse(sessionStorage.getItem('PokemonList')!);
-        this.limit = this.pokemons.length;
+        this.totalPokemons = this.pokemons.length;
       }
+      this.loading = false;
     } catch (error) {
       console.log('Ha ocurrido un error con el servicio PokeApi:');
       console.log(error);
-      this.error.status = this.error.status = true;
-      this.error.message = this.error.message = 'Ha ocurrido un problema con el servicio de PokeApi, inténtelo mas tarde';
+      this.error.status = true;
     }
   }
 
@@ -219,10 +220,6 @@ export class PokemonsComponent implements OnInit {
     sessionStorage.setItem('pageSize2', JSON.stringify(this.pageSize2));
     sessionStorage.setItem('pageIndex1', JSON.stringify(this.pageIndex1));
     sessionStorage.setItem('pageIndex2', JSON.stringify(this.pageIndex2));
-  }
-
-  imgLoading(loading: boolean): void {
-    this.loading = loading;
   }
 
   // Se guardan los datos del paginador y se redirecciona al pokemon seleccionado. 

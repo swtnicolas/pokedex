@@ -26,8 +26,8 @@ export class PokedataService {
       .toPromise();
   }
 
-  async getEvolutionChain(idx: number): Promise<any> {
-    return await this.http.get(`${this.url}/evolution-chain${idx}`)
+  async getEvolutionChain(url: string): Promise<any> {
+    return await this.http.get(url)
       .toPromise();
   }
 }

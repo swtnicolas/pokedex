@@ -11,7 +11,6 @@ export class ListComponent implements OnInit {
   @Input() lowValue?: any;
   @Input() highValue?: any;
   @Output() id = new EventEmitter<number>();
-  @Output() loading = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -20,8 +19,5 @@ export class ListComponent implements OnInit {
 
   onPokemon(id: number) {
     this.id.emit(id);
-  }
-  imgLoading() {
-    this.loading.emit(false);
   }
 }
