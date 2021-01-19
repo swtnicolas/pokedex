@@ -1,0 +1,20 @@
+<section class="section animatedFast fadeIn">
+  <h1>Datos de todos los Pokemones</h1>
+  <img src="assets/img/25.gif" alt="Pikachu.gif" />
+  <button *ngIf="this.totalPokemons > 0" [routerLink]="['/pokemones']">
+    Ir a la Pokédex
+  </button>
+  <ng-container
+    *ngIf="this.error.status === false && this.totalPokemons > 0; else noData"
+  >
+    <p>
+      Actualmente el sitio contiene:
+      <strong>¡{{ this.totalPokemons }} Pokémones!</strong>
+    </p>
+  </ng-container>
+  <ng-template #noData>
+    <p>
+      <strong>{{ this.error.message }}</strong>
+    </p>
+  </ng-template>
+</section>

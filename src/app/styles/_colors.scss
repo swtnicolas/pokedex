@@ -1,0 +1,164 @@
+$primary-light: #b12626;
+$primary-dark: #4b0f0f;
+
+$primary-hover-light: #d61e1e;
+$primary-hover-dark: #631515;
+
+$background-light: #ffffff;
+$background-dark: #1b1b1b;
+
+$background-material-dropdown-light: #ffffff;
+$background-material-dropdown-dark: #2b2b2b;
+$background-material-dropdown-hover-light: #f5f5f5;
+$background-material-dropdown-hover-dark: #3f3f3f;
+
+$paginator-light: #d61e1e;
+$paginator-dark: #fc4c4c;
+$paginator-button-disable-light: #00000042;
+$paginator-button-disable-dark: #ffffff42;
+
+$title-light: #ffffff;
+$title-dark: #ffffff;
+$title-hover-light: #979797;
+$title-hover-dark: #979797;
+
+$text-light: #000000;
+$text-dark: #bebebe;
+
+$link-light: #0000ff;
+$link-dark: #4444ff;
+
+$search-light: #919191;
+$search-dark: #919191;
+$search-hover-light: #535353;
+$search-hover-dark: #d6d6d6;
+$search-delete-light: #b61717;
+$search-delete-dark: #751919;
+$search-noResults-light: #b126267e;
+$search-noResults-dark: #8620207e;
+$search-yesResults-light: #266eb17e;
+$search-yesResults-dark: #1c50817e;
+
+$card-light: #707070;
+$card-dark: #424242;
+
+$card-detail-gradient1-light: #ffffff00;
+$card-detail-gradient1-dark: #00000000;
+$card-detail-gradient2-light: #ffffff;
+$card-detail-gradient2-dark: #000000;
+$card-detail-gradient3-light: #c3c3c3;
+$card-detail-gradient3-dark: #1d1d1d;
+$card-detail-evolutionShadow-light: #0000003a;
+$card-detail-evolutionShadow-dark: #ffffff3a;
+$card-detail-legendary-light: #ffc400;
+$card-detail-legendary-dark: #ffd139;
+$card-detail-mythical-light: #adadad;
+$card-detail-mythical-dark: #adadad;
+$card-detail-baby-light: #3273ff;
+$card-detail-baby-dark: #79a4ff;
+
+$footer-light: #ffffff;
+$footer-dark: #bebebe;
+
+$colors: (
+  --primary: (
+    $primary-light,
+    $primary-dark,
+  ),
+  --primary-hover: (
+    $primary-hover-light,
+    $primary-hover-dark,
+  ),
+  --background: (
+    $background-light,
+    $background-dark,
+  ),
+  --background-material-dropdown: (
+    $background-material-dropdown-light,
+    $background-material-dropdown-dark,
+  ),
+  --background-material-dropdown-hover: (
+    $background-material-dropdown-hover-light,
+    $background-material-dropdown-hover-dark,
+  ),
+  --paginator: (
+    $paginator-light,
+    $paginator-dark,
+  ),
+  --paginator-button-disable: (
+    $paginator-button-disable-light,
+    $paginator-button-disable-dark,
+  ),
+  --title: (
+    $title-light,
+    $title-dark,
+  ),
+  --title-hover: (
+    $title-hover-light,
+    $title-hover-dark,
+  ),
+  --text: (
+    $text-light,
+    $text-dark,
+  ),
+  --link: (
+    $link-light,
+    $link-dark,
+  ),
+  --search: (
+    $search-light,
+    $search-dark,
+  ),
+  --search-hover: (
+    $search-hover-light,
+    $search-hover-dark,
+  ),
+  --search-delete: (
+    $search-delete-light,
+    $search-delete-dark,
+  ),
+  --search-noResults: (
+    $search-noResults-light,
+    $search-noResults-dark,
+  ),
+  --search-yesResults: (
+    $search-yesResults-light,
+    $search-yesResults-dark,
+  ),
+  --card: (
+    $card-light,
+    $card-dark,
+  ),
+  --card-detail-gradient1: (
+    $card-detail-gradient1-light,
+    $card-detail-gradient1-dark,
+  ),
+  --card-detail-gradient2: (
+    $card-detail-gradient2-light,
+    $card-detail-gradient2-dark,
+  ),
+  --card-detail-gradient3: (
+    $card-detail-gradient3-light,
+    $card-detail-gradient3-dark,
+  ),
+  --card-detail-evolutionShadow: (
+    $card-detail-evolutionShadow-light,
+    $card-detail-evolutionShadow-dark,
+  ),
+  --card-detail-legendary: (
+    $card-detail-legendary-light,
+    $card-detail-legendary-dark,
+  ),
+  --card-detail-mythical: (
+    $card-detail-mythical-light,
+    $card-detail-mythical-dark,
+  ),
+  --card-detail-baby: (
+    $card-detail-baby-light,
+    $card-detail-baby-dark,
+  ),
+  --footer: (
+    $footer-light,
+    $footer-dark,
+  ),
+);

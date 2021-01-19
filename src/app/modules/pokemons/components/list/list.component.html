@@ -1,0 +1,16 @@
+<article class="all">
+  <div
+    class="cards animatedFast fadeIn"
+    *ngFor="let pokemon of pokemons | slice: lowValue:highValue"
+  >
+    <p class="cards-id">N.º{{ pokemon.id | number: "3.0" }}</p>
+    <p class="cards-name">{{ pokemon.name | titlecase }}</p>
+    <img
+      class="cards-img"
+      [src]="pokemon.img"
+      title="{{ pokemon.name | titlecase }}"
+      appImgPreload="./assets/img/0.png"
+      (click)="onPokemon(pokemon.id)"
+    />
+  </div>
+</article>

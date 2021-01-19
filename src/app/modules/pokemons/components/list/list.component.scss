@@ -1,0 +1,85 @@
+article {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.1875rem;
+  .cards {
+    display: grid;
+    grid-template-rows: auto auto 6rem;
+    background: var(--primary);
+    background: linear-gradient(
+      180deg,
+      var(--background) 34%,
+      var(--card) 100%
+    );
+    padding: 0 0 0.5rem 0;
+    border-radius: 5%;
+    font-weight: 100;
+    text-align: center;
+    &-id {
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    &-name {
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      font-size: 1.1875rem;
+      font-weight: 300;
+      font-family: Pocket-Monk;
+    }
+    &-img {
+      display: block;
+      width: 6rem;
+      height: 6rem;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 50%;
+      box-shadow: 0.125rem 0.3125rem #00000028;
+      background: var(--primary);
+      background: linear-gradient(
+        180deg,
+        var(--background) 15%,
+        var(--card) 80%
+      );
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    &-img:hover {
+      width: 5.375rem;
+      height: 5.375rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  article {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  article {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  article {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1360px) {
+  article {
+    grid-template-columns: repeat(10, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  article {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}

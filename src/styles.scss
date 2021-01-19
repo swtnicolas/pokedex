@@ -1,15 +1,30 @@
-@import "~normalize.css";
 @font-face {
   font-family: Pocket-Monk;
-  src: url("^./assets/fonts/Pocket-Monk.otf");
+  src: url("^./assets/fonts/Pocket-Monk.otf") format("opentype");
   font-display: swap;
 }
-
-$predominante: #b12626;
+@import "~normalize.css";
+@import "/src/app/styles/colors";
+@import "/src/app/styles/theme";
 
 html {
   box-sizing: border-box;
   font-size: 16px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+app-root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: var(--background);
+}
+app-header {
+  background-color: var(--primary);
+  z-index: 100;
+}
+app-footer {
+  background-color: var(--primary);
+  z-index: 90;
 }
 
 *,
@@ -37,29 +52,88 @@ html {
   animation-name: fadeIn;
 }
 
-.mat-paginator-page-size-select {
-  margin: 0px 4px 0px 4px !important;
-}
-.mat-paginator-range-label {
-  margin: 0 12px 0 8px !important;
-}
-
-.mat-paginator-icon {
-  width: 35px !important;
+// Angular Material
+.mat-paginator {
+  color: var(--text) !important;
+  background-color: var(--background) !important;
+  font-size: 13px;
+  &-page-size-select {
+    margin: 0px 4px 0px 4px !important;
+  }
+  &-range-label {
+    margin: 0 12px 0 8px !important;
+  }
+  &-icon {
+    width: 35px !important;
+  }
 }
 
 .mat-icon-button {
   width: 45px !important;
+  &:hover {
+    color: var(--paginator);
+  }
 }
 
-.mat-icon-button:hover {
-  color: $predominante;
+// Autocompletar/Paginador
+.mat-option {
+  color: var(--text);
+  background-color: var(--background-material-dropdown);
+  // Item por pagina seleccionado (lista desplegada)
+  &.mat-selected:not(.mat-option-disabled) {
+    color: var(--paginator);
+    font-weight: 500;
+  }
 }
 
-.mat-paginator,
-.mat-paginator-page-size .mat-select-trigger {
-  color: #000000;
-  font-size: 13px;
+.mat-autocomplete-panel {
+  background-color: var(--background-material-dropdown-hover);
+}
+
+.mat-select {
+  // hover lista de items por página
+  &-panel {
+    background: var(--background-material-dropdown-hover);
+  }
+  // texto item por pagina seleccionado (sin desplegar)
+  &-value {
+    color: var(--text);
+  }
+  // flecha desplegar lista de items
+  &-arrow {
+    color: var(--text);
+  }
+}
+
+.mat-form {
+  // linea baja lista desplegable de items por página
+  &-field-appearance-legacy .mat-form-field-underline {
+    background-color: var(--text);
+  }
+  // flecha focus
+  &-field.mat-focused.mat-warn .mat-select-arrow {
+    color: var(--paginator);
+  }
+  // linea baja focus
+  &-field.mat-focused .mat-form-field-ripple.mat-warn {
+    background-color: var(--paginator);
+  }
+}
+
+// botones desactivados
+.mat-button.mat-primary.mat-button-disabled,
+.mat-button.mat-accent.mat-button-disabled,
+.mat-button.mat-warn.mat-button-disabled,
+.mat-button.mat-button-disabled.mat-button-disabled,
+.mat-icon-button.mat-primary.mat-button-disabled,
+.mat-icon-button.mat-accent.mat-button-disabled,
+.mat-icon-button.mat-warn.mat-button-disabled,
+.mat-icon-button.mat-button-disabled.mat-button-disabled,
+.mat-stroked-button.mat-primary.mat-button-disabled,
+.mat-stroked-button.mat-accent.mat-button-disabled,
+.mat-stroked-button.mat-warn.mat-button-disabled,
+.mat-stroked-button.mat-button-disabled.mat-button-disabled {
+  color: var(--paginator-button-disable);
 }
 
 @media only screen and (min-width: 576px) {
@@ -91,5 +165,22 @@ html {
   .mat-paginator,
   .mat-paginator-page-size .mat-select-trigger {
     font-size: 16px;
+  }
+}
+@media only screen and (min-width: 1360px) {
+  app-header {
+    padding: 0 10px;
+  }
+  app-footer {
+    padding: 0 10px;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  app-header {
+    padding: 0 120px;
+  }
+  app-footer {
+    padding: 0 120px;
   }
 }
