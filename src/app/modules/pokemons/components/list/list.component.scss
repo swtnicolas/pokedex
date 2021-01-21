@@ -21,6 +21,7 @@ article {
       padding: 0;
       font-size: 0.875rem;
       font-weight: 500;
+      cursor: pointer;
     }
     &-name {
       color: var(--text);
@@ -29,6 +30,7 @@ article {
       font-size: 1.1875rem;
       font-weight: 300;
       font-family: Pocket-Monk;
+      cursor: pointer;
     }
     &-img {
       display: block;
