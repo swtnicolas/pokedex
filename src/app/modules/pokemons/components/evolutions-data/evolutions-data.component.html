@@ -1,8 +1,8 @@
-<strong>{{ pokemon.name | titlecase }}</strong>
-<br />
-<p>N.º{{ pokemon.id | number: "3.0" }}</p>
+<p class="name" (click)="onPokemon(pokemon.id)">
+  {{ pokemon.name | titlecase }}
+</p>
+<p (click)="onPokemon(pokemon.id)">N.º{{ pokemon.id | number: "3.0" }}</p>
 <img
-  class="card-evolution-twoEvolutionsSimple-img"
   src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
     pokemon.id
   }}.png"
